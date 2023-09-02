@@ -104,6 +104,7 @@ namespace RZZReader
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
             FormAddSrc formAdd = new FormAddSrc();
+            formAdd.StartPosition = FormStartPosition.CenterScreen;
             if (formAdd.ShowDialog() == DialogResult.OK)
             {
                 string url = formAdd.GetUrl();
