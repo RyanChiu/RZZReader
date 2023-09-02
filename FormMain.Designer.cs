@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.splitContainerFeeds = new System.Windows.Forms.SplitContainer();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
@@ -36,6 +37,9 @@
             this.splitContainerFees = new System.Windows.Forms.SplitContainer();
             this.listViewRzz = new System.Windows.Forms.ListView();
             this.webBrowserRzz = new System.Windows.Forms.WebBrowser();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -45,6 +49,7 @@
             this.splitContainerFees.Panel1.SuspendLayout();
             this.splitContainerFees.Panel2.SuspendLayout();
             this.splitContainerFees.SuspendLayout();
+            this.contextMenuStripTray.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerFeeds
@@ -133,6 +138,28 @@
             this.webBrowserRzz.Size = new System.Drawing.Size(449, 450);
             this.webBrowserRzz.TabIndex = 0;
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStripTray;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "RZZ";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            // 
+            // contextMenuStripTray
+            // 
+            this.contextMenuStripTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemExit});
+            this.contextMenuStripTray.Name = "contextMenuStripTray";
+            this.contextMenuStripTray.Size = new System.Drawing.Size(181, 48);
+            // 
+            // toolStripMenuItemExit
+            // 
+            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemExit.Text = "Exit";
+            this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -141,6 +168,7 @@
             this.Controls.Add(this.splitContainerFeeds);
             this.Name = "FormMain";
             this.Text = "FormRZZReader";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.splitContainerFeeds.Panel1.ResumeLayout(false);
             this.splitContainerFeeds.Panel1.PerformLayout();
             this.splitContainerFeeds.Panel2.ResumeLayout(false);
@@ -152,6 +180,7 @@
             this.splitContainerFees.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFees)).EndInit();
             this.splitContainerFees.ResumeLayout(false);
+            this.contextMenuStripTray.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -165,6 +194,9 @@
         private System.Windows.Forms.ToolStrip toolStripMain;
         private System.Windows.Forms.ToolStripButton toolStripBtnAdd;
         private System.Windows.Forms.WebBrowser webBrowserRzz;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTray;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
     }
 }
 

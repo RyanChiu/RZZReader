@@ -78,6 +78,13 @@ namespace RZZReader
             }
         }
 
+        private void hideToNotifyIcon()
+        {
+            this.Hide();
+            this.ShowInTaskbar = false;
+            this.notifyIcon.Visible = true;
+        }
+
         string syndicationItemToString(SyndicationItem it)
         {
             string text = "";
@@ -126,6 +133,26 @@ namespace RZZReader
                 webBrowserRzz.Document.Write(syndicationItemToString(it));
             }
             else return;
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            hideToNotifyIcon();
+        }
+
+        private void toolStripMenuItemExit_Click(object sender, EventArgs e)
+        {
+            System.Environment.Exit(System.Environment.ExitCode);
+            this.Dispose();
+            this.Close();
         }
     }
 }
