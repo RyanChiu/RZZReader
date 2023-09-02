@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddSrc));
             this.textBoxURL = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -69,10 +70,11 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.textBoxURL);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(700, 90);
             this.MinimumSize = new System.Drawing.Size(660, 90);
             this.Name = "FormAddSrc";
-            this.Text = "FormAddSrc";
+            this.Text = "Add a source";
             this.ResumeLayout(false);
             this.PerformLayout();
 
