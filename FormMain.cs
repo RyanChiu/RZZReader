@@ -18,6 +18,7 @@ namespace RZZReader
         public FormMain()
         {
             InitializeComponent();
+            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
             ShowRSS("http://feed.cnblogs.com/blog/u/18638/rss");
         }
