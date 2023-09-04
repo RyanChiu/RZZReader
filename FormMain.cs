@@ -59,15 +59,20 @@ namespace RZZReader
             treeViewRzz.Nodes.Add(newNode);
 
             if (titlesOrNot) listTitles(sf);
+            else clearTitles();
         }
 
+        protected void clearTitles()
+        {
+            listViewRzz.View = View.Details;
+            listViewRzz.Items.Clear();
+        }
         protected void listTitles(SyndicationFeed sf)
         {
             /*
              * insert contents including "title, link, date, summary and content" into listview
              */
-            listViewRzz.View = View.Details;
-            listViewRzz.Items.Clear();
+            clearTitles();
             //listViewRzz.Sorting = SortOrder.Ascending;
             foreach (SyndicationItem it in sf.Items)
             {
@@ -251,7 +256,6 @@ namespace RZZReader
                  * delete the selected RSS from tree view,
                  * and renew and sync the "settings"
                  * */
-                MessageBox.Show("about to delete it...");
                 treeViewRzz.Nodes.Remove(treeViewRzz.SelectedNode);
                 string urls = getConfigValue("urls");
                 if (!String.IsNullOrEmpty(urls))
