@@ -41,6 +41,7 @@
             this.textBoxURL.Name = "textBoxURL";
             this.textBoxURL.Size = new System.Drawing.Size(644, 21);
             this.textBoxURL.TabIndex = 0;
+            this.textBoxURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxURL_KeyDown);
             // 
             // btnOK
             // 
