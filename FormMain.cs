@@ -12,11 +12,13 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Configuration;
 using System.Security.Policy;
+using System.Security.Cryptography;
 
 namespace RZZReader
 {
     public partial class FormMain : Form
     {
+        private static string salt = "pleaseinputyourownsaltstringhere";
         public FormMain()
         {
             InitializeComponent();
@@ -111,6 +113,27 @@ namespace RZZReader
             return ConfigurationManager.AppSettings[key];
         }
 
+        private string MD5Hash(string text)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+
+            //compute hash from the bytes of text  
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+
+            //get hash result after compute it  
+            byte[] result = md5.Hash;
+
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < result.Length; i++)
+            {
+                //change it into 2 hexadecimal digits  
+                //for each byte  
+                strBuilder.Append(result[i].ToString("x2"));
+            }
+
+            return strBuilder.ToString();
+        }
+
         public bool setConfigValue(String key, String value)
         {
             try
@@ -142,7 +165,7 @@ namespace RZZReader
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
             FormAddSrc formAdd = new FormAddSrc();
-            formAdd.StartPosition = FormStartPosition.CenterScreen;
+            formAdd.StartPosition = FormStartPosition.CenterParent;
             if (formAdd.ShowDialog() == DialogResult.OK)
             {
                 string url = formAdd.GetUrl();
@@ -195,9 +218,32 @@ namespace RZZReader
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
-            this.Show();
-            this.WindowState = FormWindowState.Normal;
-            this.ShowInTaskbar = true;
+            string cryptedPwd = getConfigValue("pwd");
+            if (string.IsNullOrEmpty(cryptedPwd))
+            {
+                MessageBox.Show("It's your very 1st PIN setting, please remember it, FOR SURE.", "PIN");
+            }
+
+            FormAddSrc formPwd = new FormAddSrc();
+            formPwd.setPwdMode();
+            if (formPwd.ShowDialog() == DialogResult.OK) {
+                if (string.IsNullOrEmpty(cryptedPwd))
+                {
+                    setConfigValue("pwd", MD5Hash(formPwd.GetPwd() + salt));
+                    notifyIcon.ShowBalloonTip(0, "Info", "PIN set, please keep going.", ToolTipIcon.Info);
+                } else
+                {
+                    if (cryptedPwd == MD5Hash(formPwd.GetPwd() + salt))
+                    {
+                        this.Show();
+                        this.WindowState = FormWindowState.Normal;
+                        this.ShowInTaskbar = true;
+                    } else
+                    {
+                        notifyIcon.ShowBalloonTip(0, "Error", "Wrong PIN, please try again.", ToolTipIcon.Error);
+                    }
+                }
+            };
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

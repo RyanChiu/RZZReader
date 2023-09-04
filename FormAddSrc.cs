@@ -31,5 +31,19 @@ namespace RZZReader
         {
             return textBoxURL.Text;
         }
+
+        public string GetPwd()
+        {
+            return textBoxURL.Text;
+        }
+
+        public void setPwdMode()
+        {
+            btnCancel.Enabled = false;
+            btnCancel.Visible = false;
+            textBoxURL.UseSystemPasswordChar = true;
+            this.Text = "Pin, please...";
+            this.StartPosition = FormStartPosition.CenterScreen;
+        }
     }
 }

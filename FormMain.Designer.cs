@@ -34,26 +34,26 @@
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.treeViewRzz = new System.Windows.Forms.TreeView();
+            this.contextMenuStripTree = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainerFees = new System.Windows.Forms.SplitContainer();
             this.listViewRzz = new System.Windows.Forms.ListView();
+            this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.webBrowserRzz = new System.Windows.Forms.WebBrowser();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripTree = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
             this.splitContainerFeeds.SuspendLayout();
             this.toolStripMain.SuspendLayout();
+            this.contextMenuStripTree.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFees)).BeginInit();
             this.splitContainerFees.Panel1.SuspendLayout();
             this.splitContainerFees.Panel2.SuspendLayout();
             this.splitContainerFees.SuspendLayout();
             this.contextMenuStripTray.SuspendLayout();
-            this.contextMenuStripTree.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerFeeds
@@ -108,6 +108,20 @@
             this.treeViewRzz.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRzz_AfterSelect);
             this.treeViewRzz.Click += new System.EventHandler(this.treeViewRzz_Click);
             // 
+            // contextMenuStripTree
+            // 
+            this.contextMenuStripTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.contextMenuStripTree.Name = "contextMenuStripTree";
+            this.contextMenuStripTree.Size = new System.Drawing.Size(114, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // splitContainerFees
             // 
             this.splitContainerFees.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -137,6 +151,11 @@
             this.listViewRzz.TabIndex = 0;
             this.listViewRzz.UseCompatibleStateImageBehavior = false;
             this.listViewRzz.Click += new System.EventHandler(this.listViewRzz_Click);
+            // 
+            // columnHeaderTitle
+            // 
+            this.columnHeaderTitle.Text = "Title";
+            this.columnHeaderTitle.Width = 160;
             // 
             // webBrowserRzz
             // 
@@ -169,25 +188,6 @@
             this.toolStripMenuItemExit.Text = "Exit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
-            // contextMenuStripTree
-            // 
-            this.contextMenuStripTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem});
-            this.contextMenuStripTree.Name = "contextMenuStripTree";
-            this.contextMenuStripTree.Size = new System.Drawing.Size(181, 48);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deleteToolStripMenuItem.Text = "Delete";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // columnHeaderTitle
-            // 
-            this.columnHeaderTitle.Text = "Title";
-            this.columnHeaderTitle.Width = 160;
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -205,12 +205,12 @@
             this.splitContainerFeeds.ResumeLayout(false);
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
+            this.contextMenuStripTree.ResumeLayout(false);
             this.splitContainerFees.Panel1.ResumeLayout(false);
             this.splitContainerFees.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFees)).EndInit();
             this.splitContainerFees.ResumeLayout(false);
             this.contextMenuStripTray.ResumeLayout(false);
-            this.contextMenuStripTree.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
