@@ -22,10 +22,10 @@ namespace RZZReader
         
         public FormMain()
         {
-            InitializeComponent();
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = false;
             this.StartPosition = FormStartPosition.CenterScreen;
+            InitializeComponent();
 
             //ShowRSS("http://feed.cnblogs.com/blog/u/18638/rss");
             string urls = getConfigValue("urls");
@@ -89,9 +89,10 @@ namespace RZZReader
 
         private void hideToNotifyIcon()
         {
-            this.Hide();
+            this.WindowState = FormWindowState.Minimized;
             this.ShowInTaskbar = false;
             this.notifyIcon.Visible = true;
+            this.Hide();
         }
 
         private void try2ShowRZZ()
@@ -118,8 +119,8 @@ namespace RZZReader
                     if (cryptedPwd == MD5Hash(formPwd.GetPwd() + salt))
                     {
                         this.WindowState = FormWindowState.Normal;
-                        this.Show();
                         this.ShowInTaskbar = true;
+                        this.Show();
                     }
                     else
                     {

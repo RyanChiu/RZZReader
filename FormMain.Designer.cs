@@ -156,7 +156,7 @@
             // columnHeaderTitle
             // 
             this.columnHeaderTitle.Text = "Title";
-            this.columnHeaderTitle.Width = 160;
+            this.columnHeaderTitle.Width = 320;
             // 
             // webBrowserRzz
             // 
@@ -181,7 +181,7 @@
             this.openToolStripMenuItem,
             this.toolStripMenuItemExit});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
-            this.contextMenuStripTray.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStripTray.Size = new System.Drawing.Size(109, 48);
             // 
             // toolStripMenuItemExit
             // 
@@ -203,6 +203,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainerFeeds);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "FormMain";
