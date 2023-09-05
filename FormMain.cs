@@ -19,6 +19,7 @@ namespace RZZReader
     public partial class FormMain : Form
     {
         private static string salt = "pleaseinputyourownsaltstringhere";
+        
         public FormMain()
         {
             InitializeComponent();
@@ -218,6 +219,7 @@ namespace RZZReader
 
         private void notifyIcon_DoubleClick(object sender, EventArgs e)
         {
+            notifyIcon.Visible = false;
             string cryptedPwd = getConfigValue("pwd");
             if (string.IsNullOrEmpty(cryptedPwd))
             {
@@ -227,6 +229,7 @@ namespace RZZReader
             FormAddSrc formPwd = new FormAddSrc();
             formPwd.setPwdMode();
             if (formPwd.ShowDialog() == DialogResult.OK) {
+                notifyIcon.Visible = true;
                 if (string.IsNullOrEmpty(cryptedPwd))
                 {
                     setConfigValue("pwd", MD5Hash(formPwd.GetPwd() + salt));
@@ -242,8 +245,11 @@ namespace RZZReader
                     {
                         notifyIcon.ShowBalloonTip(0, "Error", "Wrong PIN, please try again.", ToolTipIcon.Error);
                     }
-                }
-            };
+                }                
+            } else
+            {
+                notifyIcon.Visible = true;
+            }
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

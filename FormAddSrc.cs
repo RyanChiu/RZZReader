@@ -43,6 +43,8 @@ namespace RZZReader
             btnCancel.Visible = false;
             textBoxURL.UseSystemPasswordChar = true;
             this.Text = "Pin, please...";
+            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
