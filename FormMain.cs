@@ -94,6 +94,45 @@ namespace RZZReader
             this.notifyIcon.Visible = true;
         }
 
+        private void try2ShowRZZ()
+        {
+            notifyIcon.Visible = false;
+            string cryptedPwd = getConfigValue("pwd");
+            if (string.IsNullOrEmpty(cryptedPwd))
+            {
+                MessageBox.Show("It's your very 1st PIN setting, please remember it, FOR SURE.", "PIN");
+            }
+
+            FormAddSrc formPwd = new FormAddSrc();
+            formPwd.setPwdMode();
+            if (formPwd.ShowDialog() == DialogResult.OK)
+            {
+                notifyIcon.Visible = true;
+                if (string.IsNullOrEmpty(cryptedPwd))
+                {
+                    setConfigValue("pwd", MD5Hash(formPwd.GetPwd() + salt));
+                    notifyIcon.ShowBalloonTip(0, "Info", "PIN set, please keep going.", ToolTipIcon.Info);
+                }
+                else
+                {
+                    if (cryptedPwd == MD5Hash(formPwd.GetPwd() + salt))
+                    {
+                        this.WindowState = FormWindowState.Normal;
+                        this.Show();
+                        this.ShowInTaskbar = true;
+                    }
+                    else
+                    {
+                        notifyIcon.ShowBalloonTip(0, "Error", "Wrong PIN, please try again.", ToolTipIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                notifyIcon.Visible = true;
+            }
+        }
+
         string syndicationItemToString(SyndicationItem it)
         {
             string text = "";
@@ -217,45 +256,15 @@ namespace RZZReader
             else return;
         }
 
-        private void notifyIcon_DoubleClick(object sender, EventArgs e)
-        {
-            notifyIcon.Visible = false;
-            string cryptedPwd = getConfigValue("pwd");
-            if (string.IsNullOrEmpty(cryptedPwd))
-            {
-                MessageBox.Show("It's your very 1st PIN setting, please remember it, FOR SURE.", "PIN");
-            }
-
-            FormAddSrc formPwd = new FormAddSrc();
-            formPwd.setPwdMode();
-            if (formPwd.ShowDialog() == DialogResult.OK) {
-                notifyIcon.Visible = true;
-                if (string.IsNullOrEmpty(cryptedPwd))
-                {
-                    setConfigValue("pwd", MD5Hash(formPwd.GetPwd() + salt));
-                    notifyIcon.ShowBalloonTip(0, "Info", "PIN set, please keep going.", ToolTipIcon.Info);
-                } else
-                {
-                    if (cryptedPwd == MD5Hash(formPwd.GetPwd() + salt))
-                    {
-                        this.Show();
-                        this.WindowState = FormWindowState.Normal;
-                        this.ShowInTaskbar = true;
-                    } else
-                    {
-                        notifyIcon.ShowBalloonTip(0, "Error", "Wrong PIN, please try again.", ToolTipIcon.Error);
-                    }
-                }                
-            } else
-            {
-                notifyIcon.Visible = true;
-            }
-        }
-
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            e.Cancel = true;
-            hideToNotifyIcon();
+            try
+            {
+                hideToNotifyIcon();
+                e.Cancel = true;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         private void toolStripMenuItemExit_Click(object sender, EventArgs e)
@@ -324,6 +333,16 @@ namespace RZZReader
                     }
                 }
             }
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try2ShowRZZ();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try2ShowRZZ();
         }
     }
 }
