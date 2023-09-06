@@ -212,6 +212,16 @@ namespace RZZReader
                 string url = formAdd.GetUrl();
                 if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 {
+                    try
+                    {
+                        listRSS(url);
+                    } catch (Exception ex)
+                    {
+                        notifyIcon.ShowBalloonTip(0, "Error",
+                            "Something went wrong, maybe the source just entered is not available.",
+                            ToolTipIcon.Error);
+                        return;
+                    }
                     /*
                     * save rssURI into config file
                     */
@@ -230,11 +240,10 @@ namespace RZZReader
                     {
                         setConfigValue("urls", url);
                     }
-                    listRSS(url);
                 }
                 else
                 {
-                    MessageBox.Show("Not a valid URL.");
+                    notifyIcon.ShowBalloonTip(0, "Error", "Not a valid URL.", ToolTipIcon.Error);
                 }
             }
             formAdd.Close();
@@ -330,7 +339,7 @@ namespace RZZReader
                     }
                     else
                     {
-                        MessageBox.Show("No can do!");
+                        notifyIcon.ShowBalloonTip(0, "Error", "No can do!", ToolTipIcon.Error);
                     }
                 }
             }
