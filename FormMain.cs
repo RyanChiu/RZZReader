@@ -38,7 +38,7 @@ namespace RZZReader
                     i++;
                     if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
                     {
-                        if (i != arrUrl.Length) listRSS(url, false);
+                        if (i != arrUrl.Length) listRSS(url, null, false);
                         else listRSS(url);
                     }
                 }
@@ -48,18 +48,42 @@ namespace RZZReader
             }
         }
 
-        protected void listRSS(string rssURI, bool titlesOrNot = true)
+        protected void listRSS(string rssURI, string folder = "default", bool titlesOrNot = true)
         {
+            if (folder == null) folder = "default";
+
             SyndicationFeed sf = SyndicationFeed.Load(XmlReader.Create(rssURI));
             sf.BaseUri = new Uri(rssURI);
             Application.DoEvents();
 
+            TreeNode folderNode;
+            if (treeViewRzz.Nodes.Count > 0)
+            {
+                int i = 0;
+                for (i = 0; i < treeViewRzz.Nodes.Count; i++)
+                {
+                    if (treeViewRzz.Nodes[i].Text == folder)
+                    {
+                        break;
+                    }
+                }
+                if (i == treeViewRzz.Nodes.Count)
+                {
+                    folderNode = treeViewRzz.Nodes.Add(folder);
+                } else
+                {
+                    folderNode = treeViewRzz.Nodes[i];
+                }
+            } else
+            {
+                folderNode = treeViewRzz.Nodes.Add(folder);
+            }
             /*
             * insert rssURL and its name&content&everything into the treeview
             */
             TreeNode newNode = new TreeNode(sf.Title.Text);
             newNode.Tag = sf;
-            treeViewRzz.Nodes.Add(newNode);
+            folderNode.Nodes.Add(newNode);
 
             if (titlesOrNot) listTitles(sf);
             else clearTitles();
@@ -220,6 +244,7 @@ namespace RZZReader
                         notifyIcon.ShowBalloonTip(0, "Error",
                             "Something went wrong, maybe the source just entered is not available.",
                             ToolTipIcon.Error);
+                        Console.WriteLine(ex.ToString());
                         return;
                     }
                     /*
