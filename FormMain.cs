@@ -52,6 +52,9 @@ namespace RZZReader
 
         protected void listRSS(string rssURI, string folder = "default", bool titlesOrNot = true)
         {
+            this.ShowInTaskbar = true;
+            this.notifyIcon.Visible = false;
+
             if (folder == null) folder = "default";
 
             SyndicationFeed sf = SyndicationFeed.Load(XmlReader.Create(rssURI));
@@ -89,6 +92,9 @@ namespace RZZReader
 
             if (titlesOrNot) listTitles(sf);
             else clearTitles();
+
+            this.ShowInTaskbar = false;
+            this.notifyIcon.Visible = true;
         }
 
         protected void clearTitles()
