@@ -419,5 +419,20 @@ namespace RZZReader
                 notifyIcon.ShowBalloonTip(0, "Tips", "Seems that there are no images.", ToolTipIcon.Info);
             }
         }
+
+        private void FormMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.R) //Ctrl + R
+            {
+                try
+                {
+                    hideToNotifyIcon();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
     }
 }

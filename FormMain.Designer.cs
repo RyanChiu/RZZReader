@@ -39,15 +39,15 @@
             this.splitContainerFees = new System.Windows.Forms.SplitContainer();
             this.listViewRzz = new System.Windows.Forms.ListView();
             this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolStripWeb = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonCollectImgLinks = new System.Windows.Forms.ToolStripButton();
+            this.toolStripTextBoxImgs = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.webBrowserRzz = new System.Windows.Forms.WebBrowser();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripWeb = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonCollectImgLinks = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBoxImgs = new System.Windows.Forms.ToolStripTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -58,8 +58,8 @@
             this.splitContainerFees.Panel1.SuspendLayout();
             this.splitContainerFees.Panel2.SuspendLayout();
             this.splitContainerFees.SuspendLayout();
-            this.contextMenuStripTray.SuspendLayout();
             this.toolStripWeb.SuspendLayout();
+            this.contextMenuStripTray.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainerFeeds
@@ -164,6 +164,41 @@
             this.columnHeaderTitle.Text = "Title";
             this.columnHeaderTitle.Width = 320;
             // 
+            // toolStripWeb
+            // 
+            this.toolStripWeb.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonCollectImgLinks,
+            this.toolStripTextBoxImgs,
+            this.toolStripSeparator1});
+            this.toolStripWeb.Location = new System.Drawing.Point(0, 0);
+            this.toolStripWeb.Name = "toolStripWeb";
+            this.toolStripWeb.Size = new System.Drawing.Size(449, 25);
+            this.toolStripWeb.TabIndex = 1;
+            this.toolStripWeb.Text = "toolStrip1";
+            // 
+            // toolStripButtonCollectImgLinks
+            // 
+            this.toolStripButtonCollectImgLinks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
+            this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
+            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
+            this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
+            // 
+            // toolStripTextBoxImgs
+            // 
+            this.toolStripTextBoxImgs.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
+            this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
+            this.toolStripTextBoxImgs.ReadOnly = true;
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(98, 25);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // webBrowserRzz
             // 
             this.webBrowserRzz.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -205,41 +240,6 @@
             this.toolStripMenuItemExit.Text = "Exit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
-            // toolStripWeb
-            // 
-            this.toolStripWeb.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonCollectImgLinks,
-            this.toolStripTextBoxImgs,
-            this.toolStripSeparator1});
-            this.toolStripWeb.Location = new System.Drawing.Point(0, 0);
-            this.toolStripWeb.Name = "toolStripWeb";
-            this.toolStripWeb.Size = new System.Drawing.Size(449, 25);
-            this.toolStripWeb.TabIndex = 1;
-            this.toolStripWeb.Text = "toolStrip1";
-            // 
-            // toolStripButtonCollectImgLinks
-            // 
-            this.toolStripButtonCollectImgLinks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
-            this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripTextBoxImgs
-            // 
-            this.toolStripTextBoxImgs.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
-            this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
-            this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
-            this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(100, 25);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -248,10 +248,12 @@
             this.Controls.Add(this.splitContainerFeeds);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.Text = "RZZReader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
             this.splitContainerFeeds.Panel1.ResumeLayout(false);
             this.splitContainerFeeds.Panel1.PerformLayout();
             this.splitContainerFeeds.Panel2.ResumeLayout(false);
@@ -265,9 +267,9 @@
             this.splitContainerFees.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFees)).EndInit();
             this.splitContainerFees.ResumeLayout(false);
-            this.contextMenuStripTray.ResumeLayout(false);
             this.toolStripWeb.ResumeLayout(false);
             this.toolStripWeb.PerformLayout();
+            this.contextMenuStripTray.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
