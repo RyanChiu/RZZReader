@@ -13,6 +13,8 @@ using System.Xml;
 using System.Configuration;
 using System.Security.Policy;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using System.Web;
 
 namespace RZZReader
 {
@@ -199,6 +201,25 @@ namespace RZZReader
             return strBuilder.ToString();
         }
 
+        List<string> getImageLinks(string htmlContent)
+        {
+            List<string> imageLinks = new List<string>();
+
+            string pattern = @"<img.*?src=""(.*?)"".*?>";
+            MatchCollection matches = Regex.Matches(htmlContent, pattern);
+
+            foreach (Match match in matches)
+            {
+                string imageUrl = match.Groups[1].Value;
+                if (!string.IsNullOrEmpty(imageUrl))
+                {
+                    imageLinks.Add(imageUrl);
+                }
+            }
+
+            return imageLinks;
+        }
+
         public bool setConfigValue(String key, String value)
         {
             try
@@ -378,6 +399,25 @@ namespace RZZReader
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try2ShowRZZ();
+        }
+
+        private void toolStripButtonCollectImgLinks_Click(object sender, EventArgs e)
+        {
+            string htmlContent = webBrowserRzz.DocumentText;
+            List<string> links = getImageLinks(htmlContent);
+            if (links.Count > 0)
+            {
+                string ss = "";
+                foreach (string link in links)
+                {
+                    ss += link + "\r\n";
+                }
+                toolStripTextBoxImgs.Text = ss;
+                notifyIcon.ShowBalloonTip(0, "Info", "Image links copied.", ToolTipIcon.Info);
+            } else
+            {
+                notifyIcon.ShowBalloonTip(0, "Tips", "Seems that there are no images.", ToolTipIcon.Info);
+            }
         }
     }
 }
