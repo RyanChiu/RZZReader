@@ -136,7 +136,7 @@ namespace RZZReader
                 MessageBox.Show("It's your very 1st PIN setting, please remember it, FOR SURE.", "PIN");
             }
 
-            FormAddSrc formPwd = new FormAddSrc();
+            FormInput formPwd = new FormInput();
             formPwd.setPwdMode();
             if (formPwd.ShowDialog() == DialogResult.OK)
             {
@@ -256,7 +256,7 @@ namespace RZZReader
 
         private void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
-            FormAddSrc formAdd = new FormAddSrc();
+            FormInput formAdd = new FormInput();
             formAdd.StartPosition = FormStartPosition.CenterParent;
             if (formAdd.ShowDialog() == DialogResult.OK)
             {
