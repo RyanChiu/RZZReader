@@ -40,8 +40,17 @@ namespace RZZReader
                     i++;
                     if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
                     {
-                        if (i != arrUrl.Length) listRSS(url, null, false);
-                        else listRSS(url);
+                        try
+                        {
+                            if (i != arrUrl.Length) listRSS(url, null, false);
+                            else listRSS(url);
+                        } catch (Exception ex)
+                        {
+                            notifyIcon.ShowBalloonTip(0, "Error",
+                                String.Format("Something went wrong, maybe the source '{0}' is not available.", url),
+                                ToolTipIcon.Error);
+                            Console.WriteLine(ex.ToString());
+                        }
                     }
                 }
             } else
