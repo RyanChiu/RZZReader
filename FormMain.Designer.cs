@@ -48,6 +48,7 @@
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -192,7 +193,7 @@
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(98, 25);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(96, 25);
             // 
             // toolStripSeparator1
             // 
@@ -240,6 +241,12 @@
             this.toolStripMenuItemExit.Text = "Exit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -253,6 +260,7 @@
             this.Name = "FormMain";
             this.Text = "RZZReader";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
+            this.Load += new System.EventHandler(this.FormMain_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
             this.splitContainerFeeds.Panel1.ResumeLayout(false);
             this.splitContainerFeeds.Panel1.PerformLayout();
@@ -294,6 +302,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonCollectImgLinks;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxImgs;
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
 

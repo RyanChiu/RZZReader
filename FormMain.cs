@@ -21,6 +21,7 @@ namespace RZZReader
     public partial class FormMain : Form
     {
         private static string salt = "pleaseinputyourownsaltstringhere";
+        private FormLoading formLoading = null;
         
         public FormMain()
         {
@@ -28,47 +29,32 @@ namespace RZZReader
             this.ShowInTaskbar = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+        }
 
-            //ShowRSS("http://feed.cnblogs.com/blog/u/18638/rss");
-            string urls = getConfigValue("urls");
-            if (!String.IsNullOrEmpty(urls))
+        protected SyndicationFeed loadRSS(string rssURI)
+        {
+            try
             {
-                var arrUrl = urls.Split(',');
-                var i = 0;
-                foreach (var url in arrUrl)
-                {
-                    i++;
-                    if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
-                    {
-                        try
-                        {
-                            if (i != arrUrl.Length) listRSS(url, null, false);
-                            else listRSS(url);
-                        } catch (Exception ex)
-                        {
-                            notifyIcon.ShowBalloonTip(0, "Error",
-                                String.Format("Something went wrong, maybe the source '{0}' is not available.", url),
-                                ToolTipIcon.Error);
-                            Console.WriteLine(ex.ToString());
-                        }
-                    }
-                }
-            } else
+                SyndicationFeed sf = SyndicationFeed.Load(XmlReader.Create(rssURI));
+                sf.BaseUri = new Uri(rssURI);
+                return sf;
+            } catch (Exception ex)
             {
-                notifyIcon.ShowBalloonTip(0, "Tips", "No RSS subscribed, please add one.", ToolTipIcon.Info);
+                Console.WriteLine(ex.ToString());
+                return null;
             }
         }
 
-        protected void listRSS(string rssURI, string folder = "default", bool titlesOrNot = true)
+        protected void listRSS(SyndicationFeed sf, string folder = "default", bool titlesOrNot = true)
         {
+            if (sf == null) return;
+
+            /*
             this.ShowInTaskbar = true;
             this.notifyIcon.Visible = false;
+            */
 
             if (folder == null) folder = "default";
-
-            SyndicationFeed sf = SyndicationFeed.Load(XmlReader.Create(rssURI));
-            sf.BaseUri = new Uri(rssURI);
-            Application.DoEvents();
 
             TreeNode folderNode;
             if (treeViewRzz.Nodes.Count > 0)
@@ -102,8 +88,10 @@ namespace RZZReader
             if (titlesOrNot) listTitles(sf);
             else clearTitles();
 
+            /*
             this.ShowInTaskbar = false;
             this.notifyIcon.Visible = true;
+            */
         }
 
         protected void clearTitles()
@@ -274,7 +262,8 @@ namespace RZZReader
                 {
                     try
                     {
-                        listRSS(url);
+                        SyndicationFeed sf = loadRSS(url);
+                        listRSS(sf);
                     } catch (Exception ex)
                     {
                         notifyIcon.ShowBalloonTip(0, "Error",
@@ -428,7 +417,7 @@ namespace RZZReader
                     ss += link + "\r\n";
                 }
                 toolStripTextBoxImgs.Text = ss;
-                notifyIcon.ShowBalloonTip(0, "Info", "Image links copied.", ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(0, "Info", "Image links collected.", ToolTipIcon.Info);
             } else
             {
                 notifyIcon.ShowBalloonTip(0, "Tips", "Seems that there are no images.", ToolTipIcon.Info);
@@ -447,6 +436,74 @@ namespace RZZReader
                 {
                     Console.WriteLine(ex.ToString());
                 }
+            }
+        }
+
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            notifyIcon.Visible = false;
+            string urls = getConfigValue("urls");
+            if (!String.IsNullOrEmpty(urls))
+            {
+                var arrUrl = urls.Split(',');
+                formLoading = new FormLoading();
+                formLoading.setBar(arrUrl.Length);
+                formLoading.setProgress(0);
+                formLoading.Show();
+                backgroundWorker.RunWorkerAsync(arrUrl);
+            } else
+            {
+                notifyIcon.Visible = true;
+                notifyIcon.ShowBalloonTip(0, "Tips", "No RSS subscribed, please add one.", ToolTipIcon.Info);
+            }
+        }
+
+        class RZZs
+        {
+            public int cur = 0;
+            public string[] urls = null;
+            public List<SyndicationFeed> feeds = new List<SyndicationFeed>();
+        }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker bw = sender as BackgroundWorker;
+            RZZs rZZs = new RZZs();
+            var arrUrl = (string[])e.Argument;
+            rZZs.urls = arrUrl;
+            foreach (var url in arrUrl)
+            {
+                SyndicationFeed sf = loadRSS(url);
+                rZZs.feeds.Add(sf);
+                rZZs.cur++;
+                bw.ReportProgress(rZZs.cur, rZZs);
+            }
+        }
+
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            RZZs rZZs = e.UserState as RZZs;
+            SyndicationFeed sf = rZZs.feeds[rZZs.cur - 1];
+            if (sf != null)
+            {
+                formLoading.setProgress(rZZs.cur);
+                if (rZZs.cur != rZZs.urls.Length)
+                {
+                    listRSS(sf, null, false);
+                }
+                else
+                {
+                    listRSS(sf);
+                    formLoading.Close();
+                    formLoading.Dispose();
+                    notifyIcon.Visible = true;
+                }
+            }
+            else
+            {
+                notifyIcon.ShowBalloonTip(0, "Error",
+                    String.Format("Something went wrong, maybe the source '{0}' is not available.", (sf == null ? "" : sf.BaseUri.ToString())),
+                    ToolTipIcon.Error);
             }
         }
     }
