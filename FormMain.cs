@@ -447,6 +447,7 @@ namespace RZZReader
             {
                 var arrUrl = urls.Split(',');
                 formLoading = new FormLoading();
+                formLoading.Tag = notifyIcon;
                 formLoading.setBar(arrUrl.Length);
                 formLoading.setProgress(0);
                 formLoading.Show();
@@ -496,7 +497,6 @@ namespace RZZReader
                     listRSS(sf);
                     formLoading.Close();
                     formLoading.Dispose();
-                    notifyIcon.Visible = true;
                 }
             }
             else

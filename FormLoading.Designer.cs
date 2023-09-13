@@ -52,6 +52,7 @@
             this.MinimizeBox = false;
             this.Name = "FormLoading";
             this.Text = "Loading...";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLoading_FormClosing);
             this.ResumeLayout(false);
 
         }

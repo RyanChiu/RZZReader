@@ -28,5 +28,11 @@ namespace RZZReader
             progressBarLoading.Value = n;
             this.Text = "Loading...   (" + n.ToString() + "/" + progressBarLoading.Maximum.ToString() + ")";
         }
+
+        private void FormLoading_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            NotifyIcon notifyIcon = this.Tag as NotifyIcon;
+            notifyIcon.Visible = true;
+        }
     }
 }
