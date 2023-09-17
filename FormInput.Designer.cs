@@ -38,16 +38,18 @@
             // 
             this.textBoxURL.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBoxURL.Location = new System.Drawing.Point(0, 0);
+            this.textBoxURL.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxURL.Name = "textBoxURL";
-            this.textBoxURL.Size = new System.Drawing.Size(644, 21);
+            this.textBoxURL.Size = new System.Drawing.Size(641, 25);
             this.textBoxURL.TabIndex = 0;
             this.textBoxURL.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxURL_KeyDown);
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(561, 24);
+            this.btnOK.Location = new System.Drawing.Point(534, 30);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 23);
+            this.btnOK.Size = new System.Drawing.Size(100, 29);
             this.btnOK.TabIndex = 1;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -55,26 +57,28 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(482, 24);
+            this.btnCancel.Location = new System.Drawing.Point(429, 30);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.Size = new System.Drawing.Size(100, 29);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.button2_Click);
             // 
-            // FormAddSrc
+            // FormInput
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(644, 51);
+            this.ClientSize = new System.Drawing.Size(641, 64);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.textBoxURL);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(700, 90);
-            this.MinimumSize = new System.Drawing.Size(660, 90);
-            this.Name = "FormAddSrc";
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximumSize = new System.Drawing.Size(927, 111);
+            this.MinimumSize = new System.Drawing.Size(540, 101);
+            this.Name = "FormInput";
             this.Text = "Add a source";
             this.ResumeLayout(false);
             this.PerformLayout();

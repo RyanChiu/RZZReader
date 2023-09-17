@@ -36,6 +36,7 @@
             this.treeViewRzz = new System.Windows.Forms.TreeView();
             this.contextMenuStripTree = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainerFees = new System.Windows.Forms.SplitContainer();
             this.listViewRzz = new System.Windows.Forms.ListView();
             this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,7 +50,6 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.editSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -68,6 +68,7 @@
             // 
             this.splitContainerFeeds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFeeds.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerFeeds.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainerFeeds.Name = "splitContainerFeeds";
             // 
             // splitContainerFeeds.Panel1
@@ -78,8 +79,9 @@
             // splitContainerFeeds.Panel2
             // 
             this.splitContainerFeeds.Panel2.Controls.Add(this.splitContainerFees);
-            this.splitContainerFeeds.Size = new System.Drawing.Size(800, 450);
-            this.splitContainerFeeds.SplitterDistance = 179;
+            this.splitContainerFeeds.Size = new System.Drawing.Size(1067, 562);
+            this.splitContainerFeeds.SplitterDistance = 238;
+            this.splitContainerFeeds.SplitterWidth = 5;
             this.splitContainerFeeds.TabIndex = 0;
             // 
             // toolStripMain
@@ -89,7 +91,7 @@
             this.toolStripBtnAdd});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(179, 27);
+            this.toolStripMain.Size = new System.Drawing.Size(298, 39);
             this.toolStripMain.TabIndex = 2;
             this.toolStripMain.Text = "toolStrip1";
             // 
@@ -99,7 +101,7 @@
             this.toolStripBtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdd.Image")));
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
-            this.toolStripBtnAdd.Size = new System.Drawing.Size(24, 24);
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 36);
             this.toolStripBtnAdd.Text = "toolStripButtonAdd";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
@@ -109,32 +111,42 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewRzz.ContextMenuStrip = this.contextMenuStripTree;
-            this.treeViewRzz.Location = new System.Drawing.Point(0, 30);
+            this.treeViewRzz.Location = new System.Drawing.Point(0, 38);
+            this.treeViewRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeViewRzz.Name = "treeViewRzz";
-            this.treeViewRzz.Size = new System.Drawing.Size(179, 420);
+            this.treeViewRzz.Size = new System.Drawing.Size(236, 524);
             this.treeViewRzz.TabIndex = 1;
             this.treeViewRzz.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRzz_AfterSelect);
             this.treeViewRzz.Click += new System.EventHandler(this.treeViewRzz_Click);
             // 
             // contextMenuStripTree
             // 
+            this.contextMenuStripTree.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
             this.editSourceToolStripMenuItem});
             this.contextMenuStripTree.Name = "contextMenuStripTree";
-            this.contextMenuStripTree.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStripTree.Size = new System.Drawing.Size(162, 52);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // editSourceToolStripMenuItem
+            // 
+            this.editSourceToolStripMenuItem.Name = "editSourceToolStripMenuItem";
+            this.editSourceToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
+            this.editSourceToolStripMenuItem.Text = "Edit Source";
+            this.editSourceToolStripMenuItem.Click += new System.EventHandler(this.editSourceToolStripMenuItem_Click);
             // 
             // splitContainerFees
             // 
             this.splitContainerFees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFees.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerFees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainerFees.Name = "splitContainerFees";
             // 
             // splitContainerFees.Panel1
@@ -145,8 +157,9 @@
             // 
             this.splitContainerFees.Panel2.Controls.Add(this.toolStripWeb);
             this.splitContainerFees.Panel2.Controls.Add(this.webBrowserRzz);
-            this.splitContainerFees.Size = new System.Drawing.Size(617, 450);
-            this.splitContainerFees.SplitterDistance = 164;
+            this.splitContainerFees.Size = new System.Drawing.Size(824, 562);
+            this.splitContainerFees.SplitterDistance = 219;
+            this.splitContainerFees.SplitterWidth = 5;
             this.splitContainerFees.TabIndex = 1;
             // 
             // listViewRzz
@@ -156,8 +169,9 @@
             this.listViewRzz.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewRzz.HideSelection = false;
             this.listViewRzz.Location = new System.Drawing.Point(0, 0);
+            this.listViewRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listViewRzz.Name = "listViewRzz";
-            this.listViewRzz.Size = new System.Drawing.Size(164, 450);
+            this.listViewRzz.Size = new System.Drawing.Size(219, 562);
             this.listViewRzz.TabIndex = 0;
             this.listViewRzz.UseCompatibleStateImageBehavior = false;
             this.listViewRzz.Click += new System.EventHandler(this.listViewRzz_Click);
@@ -169,13 +183,14 @@
             // 
             // toolStripWeb
             // 
+            this.toolStripWeb.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripWeb.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonCollectImgLinks,
             this.toolStripTextBoxImgs,
             this.toolStripSeparator1});
             this.toolStripWeb.Location = new System.Drawing.Point(0, 0);
             this.toolStripWeb.Name = "toolStripWeb";
-            this.toolStripWeb.Size = new System.Drawing.Size(449, 25);
+            this.toolStripWeb.Size = new System.Drawing.Size(750, 39);
             this.toolStripWeb.TabIndex = 1;
             this.toolStripWeb.Text = "toolStrip1";
             // 
@@ -185,7 +200,7 @@
             this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
             this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(29, 36);
             this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
             this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
             // 
@@ -195,22 +210,23 @@
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(94, 25);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(117, 39);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // webBrowserRzz
             // 
             this.webBrowserRzz.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowserRzz.Location = new System.Drawing.Point(0, 30);
-            this.webBrowserRzz.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowserRzz.Location = new System.Drawing.Point(0, 38);
+            this.webBrowserRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.webBrowserRzz.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowserRzz.Name = "webBrowserRzz";
-            this.webBrowserRzz.Size = new System.Drawing.Size(449, 420);
+            this.webBrowserRzz.Size = new System.Drawing.Size(600, 525);
             this.webBrowserRzz.TabIndex = 0;
             // 
             // notifyIcon
@@ -223,23 +239,24 @@
             // 
             // contextMenuStripTray
             // 
+            this.contextMenuStripTray.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.toolStripMenuItemExit});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
-            this.contextMenuStripTray.Size = new System.Drawing.Size(109, 48);
+            this.contextMenuStripTray.Size = new System.Drawing.Size(119, 52);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripMenuItemExit
             // 
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-            this.toolStripMenuItemExit.Size = new System.Drawing.Size(108, 22);
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(118, 24);
             this.toolStripMenuItemExit.Text = "Exit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
@@ -249,22 +266,16 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             // 
-            // editSourceToolStripMenuItem
-            // 
-            this.editSourceToolStripMenuItem.Name = "editSourceToolStripMenuItem";
-            this.editSourceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editSourceToolStripMenuItem.Text = "Edit Source";
-            this.editSourceToolStripMenuItem.Click += new System.EventHandler(this.editSourceToolStripMenuItem_Click);
-            // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1067, 562);
             this.Controls.Add(this.splitContainerFeeds);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.Text = "RZZReader";

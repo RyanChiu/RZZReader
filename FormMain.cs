@@ -113,6 +113,7 @@ namespace RZZReader
              * insert contents including "title, link, date, summary and content" into listview
              */
             clearTitles();
+            listViewRzz.Columns[0].Text = sf.Title.Text;
             //listViewRzz.Sorting = SortOrder.Ascending;
             foreach (SyndicationItem it in sf.Items)
             {
@@ -145,10 +146,10 @@ namespace RZZReader
             formPwd.setPwdMode();
             if (formPwd.ShowDialog() == DialogResult.OK)
             {
-                notifyIcon.Visible = true;
                 if (string.IsNullOrEmpty(cryptedPwd))
                 {
                     setConfigValue("pwd", MD5Hash(formPwd.GetPwd() + salt));
+                    notifyIcon.Visible = true;
                     notifyIcon.ShowBalloonTip(0, "Info", "PIN set, please keep going.", ToolTipIcon.Info);
                 }
                 else
