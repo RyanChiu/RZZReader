@@ -27,6 +27,11 @@ namespace RZZReader
             this.DialogResult = DialogResult.Cancel;
         }
 
+        public void SetUrl(string s)
+        {
+            textBoxURL.Text = s;
+        }
+
         public string GetUrl()
         {
             return textBoxURL.Text;

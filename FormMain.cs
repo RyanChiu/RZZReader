@@ -45,7 +45,8 @@ namespace RZZReader
             }
         }
 
-        protected void listRSS(SyndicationFeed sf, string folder = "default", bool titlesOrNot = true)
+        protected void listRSS(SyndicationFeed sf, string folder = "default", 
+            bool showTitles = true, bool onlyReloaded = false)
         {
             if (sf == null) return;
 
@@ -78,14 +79,22 @@ namespace RZZReader
             {
                 folderNode = treeViewRzz.Nodes.Add(folder);
             }
-            /*
-            * insert rssURL and its name&content&everything into the treeview
-            */
-            TreeNode newNode = new TreeNode(sf.Title.Text);
-            newNode.Tag = sf;
-            folderNode.Nodes.Add(newNode);
 
-            if (titlesOrNot) listTitles(sf);
+            if (onlyReloaded)
+            {
+                treeViewRzz.SelectedNode.Text = sf.Title.Text;
+                treeViewRzz.SelectedNode.Tag = sf;
+            } else
+            {
+                /*
+                * insert rssURL and its name&content&everything into the treeview
+                */
+                TreeNode newNode = new TreeNode(sf.Title.Text);
+                newNode.Tag = sf;
+                folderNode.Nodes.Add(newNode);
+            }
+
+            if (showTitles) listTitles(sf);
             else clearTitles();
 
             /*
@@ -96,7 +105,6 @@ namespace RZZReader
 
         protected void clearTitles()
         {
-            listViewRzz.View = View.Details;
             listViewRzz.Items.Clear();
         }
         protected void listTitles(SyndicationFeed sf)
@@ -112,7 +120,7 @@ namespace RZZReader
                 item.Tag = it;
                 listViewRzz.Items.Add(item);
 
-                Application.DoEvents();
+                //Application.DoEvents();
             }
         }
 
@@ -260,16 +268,15 @@ namespace RZZReader
                 string url = formAdd.GetUrl();
                 if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 {
-                    try
+                    SyndicationFeed sf = loadRSS(url);
+                    if (sf != null)
                     {
-                        SyndicationFeed sf = loadRSS(url);
                         listRSS(sf);
-                    } catch (Exception ex)
+                    } else
                     {
                         notifyIcon.ShowBalloonTip(0, "Error",
                             "Something went wrong, maybe the source just entered is not available.",
                             ToolTipIcon.Error);
-                        Console.WriteLine(ex.ToString());
                         return;
                     }
                     /*
@@ -395,6 +402,59 @@ namespace RZZReader
             }
         }
 
+        private void editSourceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SyndicationFeed sf = (SyndicationFeed)treeViewRzz.SelectedNode.Tag;
+            string oldUrl = sf.BaseUri.OriginalString;
+            FormInput formIpt = new FormInput();
+            formIpt.Text = "Edit the source";
+            formIpt.StartPosition = FormStartPosition.CenterParent;
+            formIpt.SetUrl(oldUrl);
+            DialogResult dr = formIpt.ShowDialog();
+            string url = formIpt.GetUrl();
+            if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
+            {
+                if (dr == DialogResult.OK)
+                {
+                    //MessageBox.Show("should do the editing");
+                    //use the new url to load the RSS
+                    sf = loadRSS(url);
+                    //list the RSS into the tree and list view, but not content browser
+                    if (sf != null)
+                    {
+                        listRSS(sf, null, true, true);
+                    }
+                    else
+                    {
+                        notifyIcon.ShowBalloonTip(0, "Error",
+                            "Something went wrong, maybe the source just entered is not available.",
+                            ToolTipIcon.Error);
+                        return;
+                    }
+                    //save it to the config file
+                    string urls = getConfigValue("urls");
+                    if (!String.IsNullOrEmpty(urls))
+                    {
+                        List<string> list = urls.Split(',').ToList();
+                        int idx = list.IndexOf(oldUrl);
+                        list.RemoveAt(idx);
+                        urls = String.Join(",", list.ToArray());
+                        setConfigValue("urls", urls + "," + url);
+                    }
+                    else
+                    {
+                        setConfigValue("urls", url);
+                    }
+                }
+            } else
+            {
+                notifyIcon.ShowBalloonTip(0, "Error", "Not a valid URL.", ToolTipIcon.Error);
+            }
+            formIpt.Close();
+            formIpt.Dispose();
+        }
+
+
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             try2ShowRZZ();
@@ -441,6 +501,7 @@ namespace RZZReader
 
         private void FormMain_Load(object sender, EventArgs e)
         {
+            listViewRzz.View = View.Details;
             notifyIcon.Visible = false;
             string urls = getConfigValue("urls");
             if (!String.IsNullOrEmpty(urls))
@@ -502,7 +563,7 @@ namespace RZZReader
             else
             {
                 notifyIcon.ShowBalloonTip(0, "Error",
-                    String.Format("Something went wrong, maybe the source '{0}' is not available.", (sf == null ? "" : sf.BaseUri.ToString())),
+                    String.Format("Something went wrong, maybe the source '{0}' is not available.", (sf == null ? "" : sf.BaseUri.OriginalString)),
                     ToolTipIcon.Error);
             }
         }
