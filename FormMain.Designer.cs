@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.splitContainerFeeds = new System.Windows.Forms.SplitContainer();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.treeViewRzz = new System.Windows.Forms.TreeView();
             this.contextMenuStripTree = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,7 +40,7 @@
             this.listViewRzz = new System.Windows.Forms.ListView();
             this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripWeb = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonCollectImgLinks = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBoxImgs = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.webBrowserRzz = new System.Windows.Forms.WebBrowser();
@@ -50,8 +49,9 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSHTitles = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonCollectImgLinks = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -70,7 +70,7 @@
             // 
             this.splitContainerFeeds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFeeds.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerFeeds.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainerFeeds.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerFeeds.Name = "splitContainerFeeds";
             // 
             // splitContainerFeeds.Panel1
@@ -93,19 +93,9 @@
             this.toolStripBtnAdd});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(238, 27);
+            this.toolStripMain.Size = new System.Drawing.Size(298, 39);
             this.toolStripMain.TabIndex = 2;
             this.toolStripMain.Text = "toolStrip1";
-            // 
-            // toolStripBtnAdd
-            // 
-            this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdd.Image")));
-            this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnAdd.Name = "toolStripBtnAdd";
-            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 24);
-            this.toolStripBtnAdd.Text = "toolStripButtonAdd";
-            this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // treeViewRzz
             // 
@@ -114,7 +104,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewRzz.ContextMenuStrip = this.contextMenuStripTree;
             this.treeViewRzz.Location = new System.Drawing.Point(0, 38);
-            this.treeViewRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeViewRzz.Margin = new System.Windows.Forms.Padding(4);
             this.treeViewRzz.Name = "treeViewRzz";
             this.treeViewRzz.Size = new System.Drawing.Size(236, 524);
             this.treeViewRzz.TabIndex = 1;
@@ -148,7 +138,7 @@
             // 
             this.splitContainerFeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFeed.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerFeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainerFeed.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerFeed.Name = "splitContainerFeed";
             // 
             // splitContainerFeed.Panel1
@@ -171,7 +161,7 @@
             this.listViewRzz.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewRzz.HideSelection = false;
             this.listViewRzz.Location = new System.Drawing.Point(0, 0);
-            this.listViewRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewRzz.Margin = new System.Windows.Forms.Padding(4);
             this.listViewRzz.Name = "listViewRzz";
             this.listViewRzz.Size = new System.Drawing.Size(219, 562);
             this.listViewRzz.TabIndex = 0;
@@ -198,15 +188,10 @@
             this.toolStripWeb.TabIndex = 1;
             this.toolStripWeb.Text = "toolStrip1";
             // 
-            // toolStripButtonCollectImgLinks
+            // toolStripSeparator2
             // 
-            this.toolStripButtonCollectImgLinks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
-            this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(29, 36);
-            this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripTextBoxImgs
             // 
@@ -214,12 +199,12 @@
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(117, 39);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(113, 27);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // webBrowserRzz
             // 
@@ -227,10 +212,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowserRzz.Location = new System.Drawing.Point(0, 38);
-            this.webBrowserRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.webBrowserRzz.Margin = new System.Windows.Forms.Padding(4);
             this.webBrowserRzz.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowserRzz.Name = "webBrowserRzz";
-            this.webBrowserRzz.Size = new System.Drawing.Size(600, 525);
+            this.webBrowserRzz.Size = new System.Drawing.Size(599, 525);
             this.webBrowserRzz.TabIndex = 0;
             // 
             // notifyIcon
@@ -270,20 +255,35 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             // 
+            // toolStripBtnAdd
+            // 
+            this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdd.Image")));
+            this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnAdd.Name = "toolStripBtnAdd";
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 36);
+            this.toolStripBtnAdd.Text = "toolStripButtonAdd";
+            this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
+            // 
             // toolStripButtonSHTitles
             // 
             this.toolStripButtonSHTitles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonSHTitles.Image = global::RZZReader.Properties.Resources._2left;
             this.toolStripButtonSHTitles.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSHTitles.Name = "toolStripButtonSHTitles";
-            this.toolStripButtonSHTitles.Size = new System.Drawing.Size(29, 36);
+            this.toolStripButtonSHTitles.Size = new System.Drawing.Size(29, 24);
             this.toolStripButtonSHTitles.Text = "Show/Hide Titles";
             this.toolStripButtonSHTitles.Click += new System.EventHandler(this.toolStripButtonSHTitles_Click);
             // 
-            // toolStripSeparator2
+            // toolStripButtonCollectImgLinks
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            this.toolStripButtonCollectImgLinks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
+            this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
+            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
+            this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
             // 
             // FormMain
             // 
@@ -294,7 +294,7 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.Text = "RZZReader";
