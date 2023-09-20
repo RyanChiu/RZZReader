@@ -568,5 +568,18 @@ namespace RZZReader
                     ToolTipIcon.Error);
             }
         }
+
+        private void toolStripButtonSHTitles_Click(object sender, EventArgs e)
+        {
+            splitContainerFeed.Panel1Collapsed = !splitContainerFeed.Panel1Collapsed;
+
+            if (splitContainerFeed.Panel1Collapsed)
+            {
+                toolStripButtonSHTitles.Image = global::RZZReader.Properties.Resources._2right;
+            } else
+            {
+                toolStripButtonSHTitles.Image = global::RZZReader.Properties.Resources._2left;
+            }
+        }
     }
 }
