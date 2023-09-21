@@ -184,7 +184,7 @@
             this.toolStripSeparator1});
             this.toolStripWeb.Location = new System.Drawing.Point(0, 0);
             this.toolStripWeb.Name = "toolStripWeb";
-            this.toolStripWeb.Size = new System.Drawing.Size(600, 27);
+            this.toolStripWeb.Size = new System.Drawing.Size(750, 39);
             this.toolStripWeb.TabIndex = 1;
             this.toolStripWeb.Text = "toolStrip1";
             // 

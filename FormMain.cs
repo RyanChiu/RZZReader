@@ -270,6 +270,7 @@ namespace RZZReader
                 if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 {
                     SyndicationFeed sf = loadRSS(url);
+                    notifyIcon.Visible = true;
                     if (sf != null)
                     {
                         listRSS(sf);
@@ -278,6 +279,7 @@ namespace RZZReader
                         notifyIcon.ShowBalloonTip(0, "Error",
                             "Something went wrong, maybe the source just entered is not available.",
                             ToolTipIcon.Error);
+                        notifyIcon.Visible = false;
                         return;
                     }
                     /*
@@ -289,7 +291,10 @@ namespace RZZReader
                         var arrUrls = urls.Split(',');
                         if (arrUrls.Contains(url))
                         {
-                            notifyIcon.ShowBalloonTip(0, "Warning", "Duplicated resource, please try others.", ToolTipIcon.Warning);
+                            notifyIcon.ShowBalloonTip(0, "Warning", 
+                                "Duplicated resource, please try others.", 
+                                ToolTipIcon.Warning);
+                            notifyIcon.Visible = false;
                             return;
                         }
                         setConfigValue("urls", urls + "," + url);
@@ -298,10 +303,13 @@ namespace RZZReader
                     {
                         setConfigValue("urls", url);
                     }
+                    notifyIcon.Visible = false;
                 }
                 else
                 {
+                    notifyIcon.Visible = true;
                     notifyIcon.ShowBalloonTip(0, "Error", "Not a valid URL.", ToolTipIcon.Error);
+                    notifyIcon.Visible = false;
                 }
             }
             formAdd.Close();
@@ -397,7 +405,9 @@ namespace RZZReader
                     }
                     else
                     {
+                        notifyIcon.Visible = true;
                         notifyIcon.ShowBalloonTip(0, "Error", "No can do!", ToolTipIcon.Error);
+                        notifyIcon.Visible = false;
                     }
                 }
             }
@@ -420,6 +430,7 @@ namespace RZZReader
                     //MessageBox.Show("should do the editing");
                     //use the new url to load the RSS
                     sf = loadRSS(url);
+                    notifyIcon.Visible = true;
                     //list the RSS into the tree and list view, but not content browser
                     if (sf != null)
                     {
@@ -430,6 +441,7 @@ namespace RZZReader
                         notifyIcon.ShowBalloonTip(0, "Error",
                             "Something went wrong, maybe the source just entered is not available.",
                             ToolTipIcon.Error);
+                        notifyIcon.Visible = false;
                         return;
                     }
                     //save it to the config file
@@ -449,7 +461,9 @@ namespace RZZReader
                 }
             } else
             {
+                notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(0, "Error", "Not a valid URL.", ToolTipIcon.Error);
+                notifyIcon.Visible = false;
             }
             formIpt.Close();
             formIpt.Dispose();
@@ -478,10 +492,14 @@ namespace RZZReader
                     ss += link + "\r\n";
                 }
                 toolStripTextBoxImgs.Text = ss;
+                notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(0, "Info", "Image links collected.", ToolTipIcon.Info);
+                notifyIcon.Visible = false;
             } else
             {
+                notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(0, "Tips", "Seems that there are no images.", ToolTipIcon.Info);
+                notifyIcon.Visible = false;
             }
         }
 
@@ -563,9 +581,11 @@ namespace RZZReader
             }
             else
             {
+                notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(0, "Error",
                     String.Format("Something went wrong, maybe the source '{0}' is not available.", (sf == null ? "" : sf.BaseUri.OriginalString)),
                     ToolTipIcon.Error);
+                notifyIcon.Visible = false;
             }
         }
 

@@ -1,4 +1,5 @@
 # RZZReader
+fix when the rss source is not available, nothing happened, should be warned in some way.
 next moves:
 1, let tree view use folders to hold different kinds of sites.# started with "default" folder, and should be continued.
 2, crypt the "setting" files instead of could be seen through. # not start yet.
