@@ -15,6 +15,8 @@ using System.Security.Policy;
 using System.Security.Cryptography;
 using System.Text.RegularExpressions;
 using System.Web;
+using CefSharp;
+using CefSharp.WinForms;
 
 namespace RZZReader
 {
@@ -29,6 +31,11 @@ namespace RZZReader
             this.ShowInTaskbar = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+
+            CefSettings settings = new CefSettings();
+            settings.Locale = "zh-CN";
+            settings.AcceptLanguageList = "zh-CN";
+            Cef.Initialize(settings);
         }
 
         protected SyndicationFeed loadRSS(string rssURI)
@@ -183,6 +190,11 @@ namespace RZZReader
                 text += it.Summary.Text + "<hr>";
             if (it.Content != null)
                 text += ((TextSyndicationContent)it.Content).Text;
+
+            text = "<!DOCTYPE html><html lang=\"zh-CN\"><head><meta charset=\"UTF-8\"></head><body>"
+                + text
+                + "</body></html>";
+
             return text;
         }
 
@@ -322,12 +334,16 @@ namespace RZZReader
                 ListViewItem item = listViewRzz.SelectedItems[0];
                 SyndicationItem it = item.Tag as SyndicationItem;
 
-                webBrowserRzz.Navigate("about:blank");
-                while (webBrowserRzz.ReadyState != WebBrowserReadyState.Complete)
+                try
                 {
-                    Application.DoEvents();
+                    csWebBrowser.LoadHtml(syndicationItemToString(it), true);
+                } catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    notifyIcon.Visible = true;
+                    notifyIcon.ShowBalloonTip(0, "Error", ex.ToString(), ToolTipIcon.Error);
+                    notifyIcon.Visible = false;
                 }
-                webBrowserRzz.Document.Write(syndicationItemToString(it));
             }
             else return;
         }
@@ -346,6 +362,7 @@ namespace RZZReader
         private void toolStripMenuItemExit_Click(object sender, EventArgs e)
         {
             System.Environment.Exit(System.Environment.ExitCode);
+            Cef.Shutdown();
             this.Dispose();
             this.Close();
         }
@@ -480,9 +497,10 @@ namespace RZZReader
             try2ShowRZZ();
         }
 
-        private void toolStripButtonCollectImgLinks_Click(object sender, EventArgs e)
+        private async void toolStripButtonCollectImgLinks_Click(object sender, EventArgs e)
         {
-            string htmlContent = webBrowserRzz.DocumentText;
+            object obj = await csWebBrowser.GetSourceAsync();
+            string htmlContent = obj.ToString();
             List<string> links = getImageLinks(htmlContent);
             if (links.Count > 0)
             {

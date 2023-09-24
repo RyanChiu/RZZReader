@@ -1,4 +1,6 @@
-﻿namespace RZZReader
+﻿using CefSharp;
+
+namespace RZZReader
 {
     partial class FormMain
     {
@@ -32,6 +34,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.splitContainerFeeds = new System.Windows.Forms.SplitContainer();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
+            this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
             this.treeViewRzz = new System.Windows.Forms.TreeView();
             this.contextMenuStripTree = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,18 +43,17 @@
             this.listViewRzz = new System.Windows.Forms.ListView();
             this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripWeb = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonSHTitles = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonCollectImgLinks = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBoxImgs = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.webBrowserRzz = new System.Windows.Forms.WebBrowser();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.toolStripBtnAdd = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSHTitles = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonCollectImgLinks = new System.Windows.Forms.ToolStripButton();
+            this.csWebBrowser = new CefSharp.WinForms.ChromiumWebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -70,7 +72,6 @@
             // 
             this.splitContainerFeeds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFeeds.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerFeeds.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerFeeds.Name = "splitContainerFeeds";
             // 
             // splitContainerFeeds.Panel1
@@ -81,9 +82,8 @@
             // splitContainerFeeds.Panel2
             // 
             this.splitContainerFeeds.Panel2.Controls.Add(this.splitContainerFeed);
-            this.splitContainerFeeds.Size = new System.Drawing.Size(1067, 562);
-            this.splitContainerFeeds.SplitterDistance = 238;
-            this.splitContainerFeeds.SplitterWidth = 5;
+            this.splitContainerFeeds.Size = new System.Drawing.Size(640, 359);
+            this.splitContainerFeeds.SplitterDistance = 142;
             this.splitContainerFeeds.TabIndex = 0;
             // 
             // toolStripMain
@@ -93,9 +93,19 @@
             this.toolStripBtnAdd});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(298, 39);
+            this.toolStripMain.Size = new System.Drawing.Size(142, 27);
             this.toolStripMain.TabIndex = 2;
             this.toolStripMain.Text = "toolStrip1";
+            // 
+            // toolStripBtnAdd
+            // 
+            this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdd.Image")));
+            this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBtnAdd.Name = "toolStripBtnAdd";
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(24, 24);
+            this.toolStripBtnAdd.Text = "toolStripButtonAdd";
+            this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // treeViewRzz
             // 
@@ -103,10 +113,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewRzz.ContextMenuStrip = this.contextMenuStripTree;
-            this.treeViewRzz.Location = new System.Drawing.Point(0, 38);
-            this.treeViewRzz.Margin = new System.Windows.Forms.Padding(4);
+            this.treeViewRzz.Location = new System.Drawing.Point(0, 30);
             this.treeViewRzz.Name = "treeViewRzz";
-            this.treeViewRzz.Size = new System.Drawing.Size(236, 524);
+            this.treeViewRzz.Size = new System.Drawing.Size(141, 329);
             this.treeViewRzz.TabIndex = 1;
             this.treeViewRzz.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRzz_AfterSelect);
             this.treeViewRzz.Click += new System.EventHandler(this.treeViewRzz_Click);
@@ -118,19 +127,19 @@
             this.deleteToolStripMenuItem,
             this.editSourceToolStripMenuItem});
             this.contextMenuStripTree.Name = "contextMenuStripTree";
-            this.contextMenuStripTree.Size = new System.Drawing.Size(162, 52);
+            this.contextMenuStripTree.Size = new System.Drawing.Size(143, 48);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // editSourceToolStripMenuItem
             // 
             this.editSourceToolStripMenuItem.Name = "editSourceToolStripMenuItem";
-            this.editSourceToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
+            this.editSourceToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.editSourceToolStripMenuItem.Text = "Edit Source";
             this.editSourceToolStripMenuItem.Click += new System.EventHandler(this.editSourceToolStripMenuItem_Click);
             // 
@@ -138,7 +147,6 @@
             // 
             this.splitContainerFeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFeed.Location = new System.Drawing.Point(0, 0);
-            this.splitContainerFeed.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerFeed.Name = "splitContainerFeed";
             // 
             // splitContainerFeed.Panel1
@@ -147,11 +155,10 @@
             // 
             // splitContainerFeed.Panel2
             // 
+            this.splitContainerFeed.Panel2.Controls.Add(this.csWebBrowser);
             this.splitContainerFeed.Panel2.Controls.Add(this.toolStripWeb);
-            this.splitContainerFeed.Panel2.Controls.Add(this.webBrowserRzz);
-            this.splitContainerFeed.Size = new System.Drawing.Size(824, 562);
-            this.splitContainerFeed.SplitterDistance = 219;
-            this.splitContainerFeed.SplitterWidth = 5;
+            this.splitContainerFeed.Size = new System.Drawing.Size(494, 359);
+            this.splitContainerFeed.SplitterDistance = 131;
             this.splitContainerFeed.TabIndex = 1;
             // 
             // listViewRzz
@@ -161,9 +168,8 @@
             this.listViewRzz.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewRzz.HideSelection = false;
             this.listViewRzz.Location = new System.Drawing.Point(0, 0);
-            this.listViewRzz.Margin = new System.Windows.Forms.Padding(4);
             this.listViewRzz.Name = "listViewRzz";
-            this.listViewRzz.Size = new System.Drawing.Size(219, 562);
+            this.listViewRzz.Size = new System.Drawing.Size(131, 359);
             this.listViewRzz.TabIndex = 0;
             this.listViewRzz.UseCompatibleStateImageBehavior = false;
             this.listViewRzz.Click += new System.EventHandler(this.listViewRzz_Click);
@@ -184,14 +190,34 @@
             this.toolStripSeparator1});
             this.toolStripWeb.Location = new System.Drawing.Point(0, 0);
             this.toolStripWeb.Name = "toolStripWeb";
-            this.toolStripWeb.Size = new System.Drawing.Size(750, 39);
+            this.toolStripWeb.Size = new System.Drawing.Size(359, 27);
             this.toolStripWeb.TabIndex = 1;
             this.toolStripWeb.Text = "toolStrip1";
+            // 
+            // toolStripButtonSHTitles
+            // 
+            this.toolStripButtonSHTitles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSHTitles.Image = global::RZZReader.Properties.Resources._2left;
+            this.toolStripButtonSHTitles.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSHTitles.Name = "toolStripButtonSHTitles";
+            this.toolStripButtonSHTitles.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonSHTitles.Text = "Show/Hide Titles";
+            this.toolStripButtonSHTitles.Click += new System.EventHandler(this.toolStripButtonSHTitles_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripButtonCollectImgLinks
+            // 
+            this.toolStripButtonCollectImgLinks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
+            this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
+            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
+            this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
             // 
             // toolStripTextBoxImgs
             // 
@@ -199,24 +225,12 @@
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(113, 27);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(79, 27);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // webBrowserRzz
-            // 
-            this.webBrowserRzz.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowserRzz.Location = new System.Drawing.Point(0, 38);
-            this.webBrowserRzz.Margin = new System.Windows.Forms.Padding(4);
-            this.webBrowserRzz.MinimumSize = new System.Drawing.Size(27, 25);
-            this.webBrowserRzz.Name = "webBrowserRzz";
-            this.webBrowserRzz.Size = new System.Drawing.Size(599, 525);
-            this.webBrowserRzz.TabIndex = 0;
             // 
             // notifyIcon
             // 
@@ -233,19 +247,19 @@
             this.openToolStripMenuItem,
             this.toolStripMenuItemExit});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
-            this.contextMenuStripTray.Size = new System.Drawing.Size(119, 52);
+            this.contextMenuStripTray.Size = new System.Drawing.Size(109, 48);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(118, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(108, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripMenuItemExit
             // 
             this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-            this.toolStripMenuItemExit.Size = new System.Drawing.Size(118, 24);
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(108, 22);
             this.toolStripMenuItemExit.Text = "Exit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
@@ -255,46 +269,24 @@
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             // 
-            // toolStripBtnAdd
+            // csWebBrowser
             // 
-            this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdd.Image")));
-            this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBtnAdd.Name = "toolStripBtnAdd";
-            this.toolStripBtnAdd.Size = new System.Drawing.Size(29, 36);
-            this.toolStripBtnAdd.Text = "toolStripButtonAdd";
-            this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
-            // 
-            // toolStripButtonSHTitles
-            // 
-            this.toolStripButtonSHTitles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonSHTitles.Image = global::RZZReader.Properties.Resources._2left;
-            this.toolStripButtonSHTitles.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonSHTitles.Name = "toolStripButtonSHTitles";
-            this.toolStripButtonSHTitles.Size = new System.Drawing.Size(29, 24);
-            this.toolStripButtonSHTitles.Text = "Show/Hide Titles";
-            this.toolStripButtonSHTitles.Click += new System.EventHandler(this.toolStripButtonSHTitles_Click);
-            // 
-            // toolStripButtonCollectImgLinks
-            // 
-            this.toolStripButtonCollectImgLinks.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
-            this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(29, 24);
-            this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
+            this.csWebBrowser.ActivateBrowserOnCreation = false;
+            this.csWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.csWebBrowser.Location = new System.Drawing.Point(0, 27);
+            this.csWebBrowser.Name = "csWebBrowser";
+            this.csWebBrowser.Size = new System.Drawing.Size(359, 332);
+            this.csWebBrowser.TabIndex = 2;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 562);
+            this.ClientSize = new System.Drawing.Size(640, 359);
             this.Controls.Add(this.splitContainerFeeds);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.Text = "RZZReader";
@@ -329,7 +321,6 @@
         private System.Windows.Forms.ListView listViewRzz;
         private System.Windows.Forms.ToolStrip toolStripMain;
         private System.Windows.Forms.ToolStripButton toolStripBtnAdd;
-        private System.Windows.Forms.WebBrowser webBrowserRzz;
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripTray;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
@@ -345,6 +336,7 @@
         private System.Windows.Forms.ToolStripMenuItem editSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSHTitles;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private CefSharp.WinForms.ChromiumWebBrowser csWebBrowser;
     }
 }
 
