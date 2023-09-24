@@ -42,6 +42,7 @@ namespace RZZReader
             this.splitContainerFeed = new System.Windows.Forms.SplitContainer();
             this.listViewRzz = new System.Windows.Forms.ListView();
             this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.csWebBrowser = new CefSharp.WinForms.ChromiumWebBrowser();
             this.toolStripWeb = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonSHTitles = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -53,7 +54,6 @@ namespace RZZReader
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.csWebBrowser = new CefSharp.WinForms.ChromiumWebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -104,7 +104,7 @@ namespace RZZReader
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
             this.toolStripBtnAdd.Size = new System.Drawing.Size(24, 24);
-            this.toolStripBtnAdd.Text = "toolStripButtonAdd";
+            this.toolStripBtnAdd.Text = "add your RSS source";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // treeViewRzz
@@ -179,6 +179,15 @@ namespace RZZReader
             this.columnHeaderTitle.Text = "Title";
             this.columnHeaderTitle.Width = 320;
             // 
+            // csWebBrowser
+            // 
+            this.csWebBrowser.ActivateBrowserOnCreation = false;
+            this.csWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.csWebBrowser.Location = new System.Drawing.Point(0, 27);
+            this.csWebBrowser.Name = "csWebBrowser";
+            this.csWebBrowser.Size = new System.Drawing.Size(359, 332);
+            this.csWebBrowser.TabIndex = 2;
+            // 
             // toolStripWeb
             // 
             this.toolStripWeb.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -216,7 +225,7 @@ namespace RZZReader
             this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
             this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonCollectImgLinks.Text = "toolStripButtonCollectImgLinks";
+            this.toolStripButtonCollectImgLinks.Text = "One Click to collect all the image links";
             this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
             // 
             // toolStripTextBoxImgs
@@ -225,7 +234,7 @@ namespace RZZReader
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(79, 27);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(77, 27);
             // 
             // toolStripSeparator1
             // 
@@ -268,15 +277,6 @@ namespace RZZReader
             this.backgroundWorker.WorkerReportsProgress = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
-            // 
-            // csWebBrowser
-            // 
-            this.csWebBrowser.ActivateBrowserOnCreation = false;
-            this.csWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.csWebBrowser.Location = new System.Drawing.Point(0, 27);
-            this.csWebBrowser.Name = "csWebBrowser";
-            this.csWebBrowser.Size = new System.Drawing.Size(359, 332);
-            this.csWebBrowser.TabIndex = 2;
             // 
             // FormMain
             // 
