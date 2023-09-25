@@ -53,7 +53,7 @@ namespace RZZReader
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.bgWorkerFeeds = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -272,11 +272,11 @@ namespace RZZReader
             this.toolStripMenuItemExit.Text = "Exit";
             this.toolStripMenuItemExit.Click += new System.EventHandler(this.toolStripMenuItemExit_Click);
             // 
-            // backgroundWorker
+            // bgWorkerFeeds
             // 
-            this.backgroundWorker.WorkerReportsProgress = true;
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.bgWorkerFeeds.WorkerReportsProgress = true;
+            this.bgWorkerFeeds.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerFeeds_DoWork);
+            this.bgWorkerFeeds.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorkerFeeds_ProgressChanged);
             // 
             // FormMain
             // 
@@ -332,7 +332,7 @@ namespace RZZReader
         private System.Windows.Forms.ToolStripButton toolStripButtonCollectImgLinks;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBoxImgs;
-        private System.ComponentModel.BackgroundWorker backgroundWorker;
+        private System.ComponentModel.BackgroundWorker bgWorkerFeeds;
         private System.Windows.Forms.ToolStripMenuItem editSourceToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonSHTitles;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;

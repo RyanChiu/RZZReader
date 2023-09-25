@@ -549,7 +549,7 @@ namespace RZZReader
                 formLoading.setBar(arrUrl.Length);
                 formLoading.setProgress(0);
                 formLoading.Show();
-                backgroundWorker.RunWorkerAsync(arrUrl);
+                bgWorkerFeeds.RunWorkerAsync(arrUrl);
             } else
             {
                 notifyIcon.Visible = true;
@@ -564,7 +564,7 @@ namespace RZZReader
             public List<SyndicationFeed> feeds = new List<SyndicationFeed>();
         }
 
-        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void bgWorkerFeeds_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker bw = sender as BackgroundWorker;
             RZZs rZZs = new RZZs();
@@ -579,7 +579,7 @@ namespace RZZReader
             }
         }
 
-        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void bgWorkerFeeds_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             RZZs rZZs = e.UserState as RZZs;
             SyndicationFeed sf = rZZs.feeds[rZZs.cur - 1];
