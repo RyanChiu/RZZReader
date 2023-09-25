@@ -210,7 +210,7 @@ namespace RZZReader
             this.toolStripButtonSHTitles.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSHTitles.Name = "toolStripButtonSHTitles";
             this.toolStripButtonSHTitles.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonSHTitles.Text = "Show/Hide Titles";
+            this.toolStripButtonSHTitles.Text = "Show/Hide Feeds";
             this.toolStripButtonSHTitles.Click += new System.EventHandler(this.toolStripButtonSHTitles_Click);
             // 
             // toolStripSeparator2
@@ -225,7 +225,7 @@ namespace RZZReader
             this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
             this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonCollectImgLinks.Text = "One Click to collect all the image links";
+            this.toolStripButtonCollectImgLinks.Text = "Collect all the image links";
             this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
             // 
             // toolStripTextBoxImgs

@@ -610,6 +610,7 @@ namespace RZZReader
         private void toolStripButtonSHTitles_Click(object sender, EventArgs e)
         {
             splitContainerFeed.Panel1Collapsed = !splitContainerFeed.Panel1Collapsed;
+            splitContainerFeeds.Panel1Collapsed = !splitContainerFeeds.Panel1Collapsed;
 
             if (splitContainerFeed.Panel1Collapsed)
             {
