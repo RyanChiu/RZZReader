@@ -373,6 +373,11 @@ namespace RZZReader
             this.Close();
         }
 
+        private void toolStripButtonExit_Click(object sender, EventArgs e)
+        {
+            toolStripMenuItemExit_Click(sender, e);
+        }
+
         private void treeViewRzz_Click(object sender, EventArgs e)
         {
             MouseEventArgs me = (MouseEventArgs)e;

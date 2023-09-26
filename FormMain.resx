@@ -120,12 +120,6 @@
   <metadata name="toolStripMain.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="contextMenuStripTree.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>444, 17</value>
-  </metadata>
-  <metadata name="toolStripWeb.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>627, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripBtnAdd.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -495,6 +489,12 @@
         1+baXJtrc22uzbW5Ntfm2lyba3Ntrs21uTbX3ttNpfp/5Eyiio4qx0cAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="contextMenuStripTree.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>444, 17</value>
+  </metadata>
+  <metadata name="toolStripWeb.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>627, 17</value>
+  </metadata>
   <data name="toolStripButtonCollectImgLinks.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -530,6 +530,32 @@
         jmGMUwo/tjeaWg3MKwtIiFNiF5iNubgtL/CW855jJvaBGfR03TE1GJjXIyDxgD0Rucw7kMf4fcVEy/LE
         WHfvrUF4jQJGHnHkbB4T9ypRFReZYoPzmgV6OZGgoLnhuulqcP4nAka6u59dfoD/AIz+6bhpZxrGAAAA
         AElFTkSuQmCC
+</value>
+  </data>
+  <data name="toolStripButtonExit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASXSURBVHhe7ZpNaFxVFMdP/KhgwapoQUVXbqygYNK8mSpV
+        UXEh2tKVG9GlootWEFS0g6umvW/eM9VNFy4qIiiI2EUXIhhsSw0qoghiq1TEmZd5b5pEI22lkOf/TA5l
+        Pm7szOTemzvwfnDIzJzDnHP+9+NdMpcKCgoKCgr64/6p+TtKqvlaSWXHApX+GYTp34HKloxZmDXwnUdK
+        Yfr6A/sWb5C068+D8cL1KC5GYYulMMudmUr3SgnrR6m6eCMa/1pboAPDzJihSn6FlOMWHnmMwje6wtxa
+        +qWU5Bas9bf1BWFkwvR3/P22JZAJ4+/6vyWm0j1SlhsmVXMLpt85TTFfYT8Ypzwfk1CjlMPG48hxqisn
+        L4ULTjdGNPlWdxEYhZO8LCTEGveoZCMaPt2bv/mShNgHj7mf25Njyl8s7U/vE7d1Jg9kO9rzSw1HxG2X
+        LZV8A0+5juQqnRW3M5Bzob0GWCIuu7R2/87EPP0/E7czZHO8VAMGZUlcdtEJgNH4VNzOQMMzHTXgpCgu
+        u/giAB7DT3bUodJ94rKLLwIwZZVtxfmgEqjmLn6fRPQE7BfYfK1Ku1tBpvFJgHb+qNJt9YgW0Xx+yUJ6
+        Ttzm8FWAuZAe6WhebC6iHRJiBl8FSBRtrFdpaRURHpWwteOrAEw9pu06AWDnaxGZOaj5LADDo60RIMf+
+        0OB9QsKGx3cBGDT7vE6EpErfn5qmayRsOEZBAAb7wUGtCBHNSMhwjIoADEb8E40AvBw+l5DBGSUBGIhw
+        VCtCld6VkMEYNQHyj+lKjPhJrQghvSBh/eNKgEaV7kThEyZMDklnuwVgq8W0U1L2hwsBMG0jFH5RV7Bp
+        Q57TkrY/bAuQxBToCrVptUN0raS/PLYFWO0gY9PSiG6R9JfHtgB5TmOYlj/qCrVhyJXkFer/xxUXewAK
+        ugqF7cFeoAwZ7yn/rCLAm5K2P1wIYBo88/fqmocdHmj9M6MmAJp8EQIsdzXeOg2eiWnw3zFGSQA0+Yzu
+        fwT47IehmmdGRQCs+4dhC5rm6/VpulnCBmcUBECjd+ua589wwrxXwobDdwESRZsxynO65gc+9urwWQBe
+        11j3s5rmL+DzZyVsbfgsAEb+w57mVwR4RULWjs8CoNlzPc1HFIvbDJ7PgN/am8f7936q0AZxm8FrAWLa
+        jrWeoPFlTPuj81O0SVzm8EWA8an5TaUwDYMw+y5Q2UG+tyCu1mYoL83jiwDI+UZXDR+Iyy6+CNB9QQLv
+        /xKXXXiqdSSGQYAvxO0M5O24LebsggSDNZd2JT8/fii/WtzWmQjP3o71/29HDSo7IW77YMQPtydvmcqq
+        4rZLno+h+fd786dKIuwDAZ7uKQCGmfCqhFiBd37kiHtyq3Q5UM1AwtzAj5+eQlYMa5MfT+nLpQPpblOG
+        73sHs+yMJh8L/5GU5Y6tUTahK8a1YTYulFWyWcpyCzaeh3RFuTJuPgibj0k560M5bGyT2+HaIm0Zpv3x
+        IG7eJWWsPyvrNPtVV6wp4zvJGPVZvhg9Od28TlL7xXhYu4mvtZfDbKcpg7BP8XLbtj+7VdIUFBQUFNiF
+        6D/7IbzcGXwKEwAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="notifyIcon.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
