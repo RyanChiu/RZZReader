@@ -54,6 +54,8 @@ namespace RZZReader
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.bgWorkerFeeds = new System.ComponentModel.BackgroundWorker();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -125,9 +127,11 @@ namespace RZZReader
             this.contextMenuStripTree.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStripTree.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.deleteToolStripMenuItem,
-            this.editSourceToolStripMenuItem});
+            this.editSourceToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.refreshToolStripMenuItem});
             this.contextMenuStripTree.Name = "contextMenuStripTree";
-            this.contextMenuStripTree.Size = new System.Drawing.Size(143, 48);
+            this.contextMenuStripTree.Size = new System.Drawing.Size(181, 98);
             // 
             // deleteToolStripMenuItem
             // 
@@ -278,6 +282,18 @@ namespace RZZReader
             this.bgWorkerFeeds.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerFeeds_DoWork);
             this.bgWorkerFeeds.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorkerFeeds_ProgressChanged);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -337,6 +353,8 @@ namespace RZZReader
         private System.Windows.Forms.ToolStripButton toolStripButtonSHTitles;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private CefSharp.WinForms.ChromiumWebBrowser csWebBrowser;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem refreshToolStripMenuItem;
     }
 }
 

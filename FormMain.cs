@@ -498,6 +498,31 @@ namespace RZZReader
             formIpt.Dispose();
         }
 
+        private async void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TreeNode selectedNode = treeViewRzz.SelectedNode;
+            SyndicationFeed sf = (SyndicationFeed)treeViewRzz.SelectedNode.Tag;
+            this.Text = mainTitle + "  (...Refreshing...)";
+            sf = await asyncLoadRSS(sf.BaseUri.OriginalString);
+            this.Text = mainTitle;
+            notifyIcon.Visible = true;
+            //list the RSS into the tree and list view, but not content browser
+            if (sf != null)
+            {
+                if (treeViewRzz.SelectedNode == selectedNode)
+                    listRSS(sf, null, true, selectedNode);
+                else
+                    listRSS(sf, null, false, selectedNode);
+            }
+            else
+            {
+                notifyIcon.ShowBalloonTip(0, "Error",
+                    "Something went wrong, maybe the source is temply not available.",
+                    ToolTipIcon.Error);
+                notifyIcon.Visible = false;
+                return;
+            }
+        }
 
         private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
