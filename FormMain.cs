@@ -23,6 +23,7 @@ namespace RZZReader
     public partial class FormMain : Form
     {
         private static string salt = "pleaseinputyourownsaltstringhere";
+        private static string mainTitle = string.Empty;
         private FormLoading formLoading = null;
         
         public FormMain()
@@ -31,6 +32,7 @@ namespace RZZReader
             this.ShowInTaskbar = false;
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
+            mainTitle = this.Text;
 
             CefSettings settings = new CefSettings();
             settings.Locale = "zh-CN";
@@ -52,8 +54,14 @@ namespace RZZReader
             }
         }
 
+        protected async Task<SyndicationFeed> asyncLoadRSS(string rssURI)
+        {
+            SyndicationFeed sf = await Task.Run(() => loadRSS(rssURI));
+            return sf;
+        }
+
         protected void listRSS(SyndicationFeed sf, string folder = "default", 
-            bool showTitles = true, bool onlyReloaded = false)
+            bool showTitles = true, TreeNode selectedNode = null)
         {
             if (sf == null) return;
 
@@ -87,10 +95,10 @@ namespace RZZReader
                 folderNode = treeViewRzz.Nodes.Add(folder);
             }
 
-            if (onlyReloaded)
+            if (selectedNode != null)
             {
-                treeViewRzz.SelectedNode.Text = sf.Title.Text;
-                treeViewRzz.SelectedNode.Tag = sf;
+                selectedNode.Text = sf.Title.Text;
+                selectedNode.Tag = sf;
             } else
             {
                 /*
@@ -102,7 +110,7 @@ namespace RZZReader
             }
 
             if (showTitles) listTitles(sf);
-            else clearTitles();
+            //else listViewRzz.Items.Clear();
 
             /*
             this.ShowInTaskbar = false;
@@ -110,16 +118,12 @@ namespace RZZReader
             */
         }
 
-        protected void clearTitles()
-        {
-            listViewRzz.Items.Clear();
-        }
         protected void listTitles(SyndicationFeed sf)
         {
             /*
              * insert contents including "title, link, date, summary and content" into listview
              */
-            clearTitles();
+            listViewRzz.Items.Clear();
             listViewRzz.Columns[0].Text = sf.Title.Text;
             //listViewRzz.Sorting = SortOrder.Ascending;
             foreach (SyndicationItem it in sf.Items)
@@ -272,7 +276,7 @@ namespace RZZReader
             }
         }
 
-        private void toolStripButtonAdd_Click(object sender, EventArgs e)
+        private async void toolStripButtonAdd_Click(object sender, EventArgs e)
         {
             FormInput formAdd = new FormInput();
             formAdd.StartPosition = FormStartPosition.CenterParent;
@@ -281,7 +285,9 @@ namespace RZZReader
                 string url = formAdd.GetUrl();
                 if (Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 {
-                    SyndicationFeed sf = loadRSS(url);
+                    this.Text = mainTitle + "  (...Try to add source '" + url + "'...)";
+                    SyndicationFeed sf = await asyncLoadRSS(url);
+                    this.Text = mainTitle;
                     notifyIcon.Visible = true;
                     if (sf != null)
                     {
@@ -430,8 +436,9 @@ namespace RZZReader
             }
         }
 
-        private void editSourceToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void editSourceToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            TreeNode selectedNode = treeViewRzz.SelectedNode;
             SyndicationFeed sf = (SyndicationFeed)treeViewRzz.SelectedNode.Tag;
             string oldUrl = sf.BaseUri.OriginalString;
             FormInput formIpt = new FormInput();
@@ -446,12 +453,17 @@ namespace RZZReader
                 {
                     //MessageBox.Show("should do the editing");
                     //use the new url to load the RSS
-                    sf = loadRSS(url);
+                    this.Text = mainTitle + "  (...Try to load the changed source '" + url + "'...)";
+                    sf = await asyncLoadRSS(url);
+                    this.Text = mainTitle;
                     notifyIcon.Visible = true;
                     //list the RSS into the tree and list view, but not content browser
                     if (sf != null)
                     {
-                        listRSS(sf, null, true, true);
+                        if (treeViewRzz.SelectedNode == selectedNode)
+                            listRSS(sf, null, true, selectedNode);
+                        else
+                            listRSS(sf, null, false, selectedNode);
                     }
                     else
                     {
@@ -562,6 +574,7 @@ namespace RZZReader
             public int cur = 0;
             public string[] urls = null;
             public List<SyndicationFeed> feeds = new List<SyndicationFeed>();
+            public object tag = null;
         }
 
         private void bgWorkerFeeds_DoWork(object sender, DoWorkEventArgs e)
@@ -575,6 +588,7 @@ namespace RZZReader
                 SyndicationFeed sf = loadRSS(url);
                 rZZs.feeds.Add(sf);
                 rZZs.cur++;
+                rZZs.tag = (sf == null) ? (object)url : null;
                 bw.ReportProgress(rZZs.cur, rZZs);
             }
         }
@@ -601,9 +615,14 @@ namespace RZZReader
             {
                 notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(0, "Error",
-                    String.Format("Something went wrong, maybe the source '{0}' is not available.", (sf == null ? "" : sf.BaseUri.OriginalString)),
+                    String.Format("Something went wrong, maybe the source '{0}' is not available.", (sf == null ? (string)rZZs.tag : sf.BaseUri.OriginalString)),
                     ToolTipIcon.Error);
                 notifyIcon.Visible = false;
+                if (rZZs.cur == rZZs.urls.Length)
+                {
+                    formLoading.Close();
+                    formLoading.Dispose();
+                }
             }
         }
 

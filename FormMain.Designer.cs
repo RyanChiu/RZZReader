@@ -234,7 +234,7 @@ namespace RZZReader
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(77, 27);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(75, 27);
             // 
             // toolStripSeparator1
             // 
