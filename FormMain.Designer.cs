@@ -39,6 +39,8 @@ namespace RZZReader
             this.contextMenuStripTree = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editSourceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainerFeed = new System.Windows.Forms.SplitContainer();
             this.listViewRzz = new System.Windows.Forms.ListView();
             this.columnHeaderTitle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -49,14 +51,12 @@ namespace RZZReader
             this.toolStripButtonCollectImgLinks = new System.Windows.Forms.ToolStripButton();
             this.toolStripTextBoxImgs = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonExit = new System.Windows.Forms.ToolStripButton();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.bgWorkerFeeds = new System.ComponentModel.BackgroundWorker();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.refreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButtonExit = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerFeeds)).BeginInit();
             this.splitContainerFeeds.Panel1.SuspendLayout();
             this.splitContainerFeeds.Panel2.SuspendLayout();
@@ -96,17 +96,18 @@ namespace RZZReader
             this.toolStripBtnAdd});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(142, 27);
+            this.toolStripMain.Size = new System.Drawing.Size(142, 31);
             this.toolStripMain.TabIndex = 2;
             this.toolStripMain.Text = "toolStrip1";
             // 
             // toolStripBtnAdd
             // 
             this.toolStripBtnAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBtnAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBtnAdd.Image")));
+            this.toolStripBtnAdd.Image = global::RZZReader.Properties.Resources.feed;
             this.toolStripBtnAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
-            this.toolStripBtnAdd.Size = new System.Drawing.Size(24, 24);
+            this.toolStripBtnAdd.Padding = new System.Windows.Forms.Padding(2);
+            this.toolStripBtnAdd.Size = new System.Drawing.Size(28, 28);
             this.toolStripBtnAdd.Text = "add your RSS source";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
@@ -148,6 +149,18 @@ namespace RZZReader
             this.editSourceToolStripMenuItem.Text = "Edit Source";
             this.editSourceToolStripMenuItem.Click += new System.EventHandler(this.editSourceToolStripMenuItem_Click);
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
+            // 
+            // refreshToolStripMenuItem
+            // 
+            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.refreshToolStripMenuItem.Text = "Refresh";
+            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
+            // 
             // splitContainerFeed
             // 
             this.splitContainerFeed.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -188,9 +201,9 @@ namespace RZZReader
             // 
             this.csWebBrowser.ActivateBrowserOnCreation = false;
             this.csWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.csWebBrowser.Location = new System.Drawing.Point(0, 27);
+            this.csWebBrowser.Location = new System.Drawing.Point(0, 29);
             this.csWebBrowser.Name = "csWebBrowser";
-            this.csWebBrowser.Size = new System.Drawing.Size(359, 332);
+            this.csWebBrowser.Size = new System.Drawing.Size(359, 330);
             this.csWebBrowser.TabIndex = 2;
             // 
             // toolStripWeb
@@ -205,7 +218,7 @@ namespace RZZReader
             this.toolStripButtonExit});
             this.toolStripWeb.Location = new System.Drawing.Point(0, 0);
             this.toolStripWeb.Name = "toolStripWeb";
-            this.toolStripWeb.Size = new System.Drawing.Size(359, 27);
+            this.toolStripWeb.Size = new System.Drawing.Size(359, 29);
             this.toolStripWeb.TabIndex = 1;
             this.toolStripWeb.Text = "toolStrip1";
             // 
@@ -215,14 +228,14 @@ namespace RZZReader
             this.toolStripButtonSHTitles.Image = global::RZZReader.Properties.Resources._2left;
             this.toolStripButtonSHTitles.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSHTitles.Name = "toolStripButtonSHTitles";
-            this.toolStripButtonSHTitles.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonSHTitles.Size = new System.Drawing.Size(24, 26);
             this.toolStripButtonSHTitles.Text = "Show/Hide Feeds";
             this.toolStripButtonSHTitles.Click += new System.EventHandler(this.toolStripButtonSHTitles_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 29);
             // 
             // toolStripButtonCollectImgLinks
             // 
@@ -230,7 +243,7 @@ namespace RZZReader
             this.toolStripButtonCollectImgLinks.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCollectImgLinks.Image")));
             this.toolStripButtonCollectImgLinks.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonCollectImgLinks.Name = "toolStripButtonCollectImgLinks";
-            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(24, 24);
+            this.toolStripButtonCollectImgLinks.Size = new System.Drawing.Size(24, 26);
             this.toolStripButtonCollectImgLinks.Text = "Collect all the image links";
             this.toolStripButtonCollectImgLinks.Click += new System.EventHandler(this.toolStripButtonCollectImgLinks_Click);
             // 
@@ -240,12 +253,24 @@ namespace RZZReader
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(75, 27);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(59, 29);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripButtonExit
+            // 
+            this.toolStripButtonExit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripButtonExit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonExit.Image = global::RZZReader.Properties.Resources.exit;
+            this.toolStripButtonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonExit.Name = "toolStripButtonExit";
+            this.toolStripButtonExit.Padding = new System.Windows.Forms.Padding(1);
+            this.toolStripButtonExit.Size = new System.Drawing.Size(26, 26);
+            this.toolStripButtonExit.Text = "toolStripButton1";
+            this.toolStripButtonExit.Click += new System.EventHandler(this.toolStripButtonExit_Click);
             // 
             // notifyIcon
             // 
@@ -283,29 +308,6 @@ namespace RZZReader
             this.bgWorkerFeeds.WorkerReportsProgress = true;
             this.bgWorkerFeeds.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bgWorkerFeeds_DoWork);
             this.bgWorkerFeeds.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bgWorkerFeeds_ProgressChanged);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
-            // 
-            // refreshToolStripMenuItem
-            // 
-            this.refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            this.refreshToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
-            this.refreshToolStripMenuItem.Text = "Refresh";
-            this.refreshToolStripMenuItem.Click += new System.EventHandler(this.refreshToolStripMenuItem_Click);
-            // 
-            // toolStripButtonExit
-            // 
-            this.toolStripButtonExit.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButtonExit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonExit.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonExit.Image")));
-            this.toolStripButtonExit.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonExit.Name = "toolStripButtonExit";
-            this.toolStripButtonExit.Size = new System.Drawing.Size(24, 24);
-            this.toolStripButtonExit.Text = "toolStripButton1";
-            this.toolStripButtonExit.Click += new System.EventHandler(this.toolStripButtonExit_Click);
             // 
             // FormMain
             // 

@@ -153,6 +153,9 @@
   <ItemGroup>
     <None Include="Resources\2left.png" />
     <None Include="Resources\2right.png" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\exit.png" />
+    <None Include="Resources\feed.png" />
     <Content Include="rzz.ico" />
   </ItemGroup>
   <ItemGroup>
