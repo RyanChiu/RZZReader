@@ -553,7 +553,9 @@ namespace RZZReader
                 }
                 toolStripTextBoxImgs.Text = ss;
                 notifyIcon.Visible = true;
-                notifyIcon.ShowBalloonTip(0, "Info", "Image links collected.", ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(0, "Info", 
+                    String.Format("{0} image link(s) collected.", links.Count()),
+                    ToolTipIcon.Info);
                 notifyIcon.Visible = false;
             } else
             {
@@ -645,7 +647,8 @@ namespace RZZReader
             {
                 notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(0, "Error",
-                    String.Format("Something went wrong, maybe the source '{0}' is not available.", (sf == null ? (string)rZZs.tag : sf.BaseUri.OriginalString)),
+                    String.Format("Something went wrong, maybe the source '{0}' is not available.", 
+                        (sf == null ? (string)rZZs.tag : sf.BaseUri.OriginalString)),
                     ToolTipIcon.Error);
                 notifyIcon.Visible = false;
                 if (rZZs.cur == rZZs.urls.Length)
