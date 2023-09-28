@@ -23,7 +23,9 @@ namespace RZZReader
     public partial class FormMain : Form
     {
         private static string salt = "pleaseinputyourownsaltstringhere";
+        private static string cfgFN = "rzz.cfg";
         private static string mainTitle = string.Empty;
+        private static ExeConfigurationFileMap cfgFile = new ExeConfigurationFileMap();
         private FormLoading formLoading = null;
         
         public FormMain()
@@ -33,6 +35,8 @@ namespace RZZReader
             this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             mainTitle = this.Text;
+            cfgFile.ExeConfigFilename = String.Format("{0}\\{1}",
+                System.Windows.Forms.Application.StartupPath, cfgFN);
 
             CefSettings settings = new CefSettings();
             settings.Locale = "zh-CN";
@@ -202,12 +206,6 @@ namespace RZZReader
             return text;
         }
 
-        public String getConfigValue(String key)
-        {
-            ConfigurationManager.RefreshSection("appSettings");
-            return ConfigurationManager.AppSettings[key];
-        }
-
         private string MD5Hash(string text)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -252,7 +250,8 @@ namespace RZZReader
         {
             try
             {
-                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                Configuration config = ConfigurationManager.OpenMappedExeConfiguration(
+                    cfgFile, ConfigurationUserLevel.None);
                 if (config != null)
                 {
                     AppSettingsSection appSettings = (AppSettingsSection)config.GetSection("appSettings");
@@ -273,6 +272,29 @@ namespace RZZReader
             {
                 Console.WriteLine(ex.ToString());
                 return false;
+            }
+        }
+
+        public String getConfigValue(String key)
+        {
+            try
+            {
+                Configuration config = ConfigurationManager.OpenMappedExeConfiguration(
+                    cfgFile, ConfigurationUserLevel.None);
+                if (config != null)
+                {
+                    AppSettingsSection appSettings = (AppSettingsSection)config.GetSection("appSettings");
+                    if (appSettings.Settings.AllKeys.Contains(key))
+                    {
+                        return appSettings.Settings[key].Value;
+                    }
+                    else return null;
+                }
+                else return null;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
             }
         }
 
@@ -437,6 +459,11 @@ namespace RZZReader
                         notifyIcon.ShowBalloonTip(0, "Error", "No can do!", ToolTipIcon.Error);
                         notifyIcon.Visible = false;
                     }
+                } else
+                {
+                    notifyIcon.Visible = true;
+                    notifyIcon.ShowBalloonTip(0, "Error", "Failed to process the config file.", ToolTipIcon.Error);
+                    notifyIcon.Visible = false;
                 }
             }
         }
