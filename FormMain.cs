@@ -17,6 +17,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using CefSharp;
 using CefSharp.WinForms;
+using System.Runtime.InteropServices;
 
 namespace RZZReader
 {
@@ -27,7 +28,7 @@ namespace RZZReader
         private static string mainTitle = string.Empty;
         private static ExeConfigurationFileMap cfgFile = new ExeConfigurationFileMap();
         private FormLoading formLoading = null;
-        
+
         public FormMain()
         {
             this.WindowState = FormWindowState.Minimized;
@@ -42,6 +43,7 @@ namespace RZZReader
             settings.Locale = "zh-CN";
             settings.AcceptLanguageList = "zh-CN";
             Cef.Initialize(settings);
+            csWebBrowser.LifeSpanHandler = new LifeSpanHandler();
         }
 
         protected SyndicationFeed loadRSS(string rssURI)
@@ -608,7 +610,7 @@ namespace RZZReader
         }
 
         private void FormMain_Load(object sender, EventArgs e)
-        {
+        {            
             listViewRzz.View = View.Details;
             notifyIcon.Visible = false;
             string urls = getConfigValue("urls");
@@ -698,6 +700,59 @@ namespace RZZReader
             {
                 toolStripButtonSHTitles.Image = global::RZZReader.Properties.Resources._2left;
             }
+        }
+    }
+
+    internal class LifeSpanHandler : ILifeSpanHandler
+    {
+        [DllImport("User32.dll", EntryPoint = "SendMessage")]
+        public static extern int SendMessage(
+            IntPtr hWnd,        // the handle of message reciever window
+            int Msg,            // message ID
+            int wParam,         // w parameter
+            int lParam          // l parameter
+        );
+
+        private const int WM_SETICON = 0x80;
+        public LifeSpanHandler() { }
+
+        public bool DoClose(IWebBrowser chromiumWebBrowser, IBrowser browser)
+        {
+            //throw new NotImplementedException();
+            return false;
+        }
+
+        public void OnAfterCreated(IWebBrowser chromiumWebBrowser, IBrowser browser)
+        {
+            //throw new NotImplementedException();
+
+            if (!browser.IsDisposed && browser.IsPopup)
+            {
+                var handle = browser.GetHost().GetWindowHandle();
+                Bitmap bmp = Properties.Resources.feed;
+                SendMessage(handle, WM_SETICON, 0, (int)bmp.GetHicon());
+            }
+        }
+
+        public void OnBeforeClose(IWebBrowser chromiumWebBrowser, IBrowser browser)
+        {
+            //throw new NotImplementedException();
+        }
+
+        public bool OnBeforePopup(IWebBrowser chromiumWebBrowser, 
+            IBrowser browser, IFrame frame, 
+            string targetUrl, string targetFrameName, 
+            WindowOpenDisposition targetDisposition, 
+            bool userGesture, 
+            IPopupFeatures popupFeatures, IWindowInfo windowInfo, 
+            IBrowserSettings browserSettings, 
+            ref bool noJavascriptAccess, out IWebBrowser newBrowser)
+        {
+            //throw new NotImplementedException();
+
+            newBrowser = new ChromiumWebBrowser();
+            newBrowser.Load(targetUrl);
+            return false;
         }
     }
 }
