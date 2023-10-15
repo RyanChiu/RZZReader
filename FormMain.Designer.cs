@@ -75,6 +75,7 @@ namespace RZZReader
             // 
             this.splitContainerFeeds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFeeds.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerFeeds.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainerFeeds.Name = "splitContainerFeeds";
             // 
             // splitContainerFeeds.Panel1
@@ -85,8 +86,9 @@ namespace RZZReader
             // splitContainerFeeds.Panel2
             // 
             this.splitContainerFeeds.Panel2.Controls.Add(this.splitContainerFeed);
-            this.splitContainerFeeds.Size = new System.Drawing.Size(640, 359);
-            this.splitContainerFeeds.SplitterDistance = 142;
+            this.splitContainerFeeds.Size = new System.Drawing.Size(853, 449);
+            this.splitContainerFeeds.SplitterDistance = 189;
+            this.splitContainerFeeds.SplitterWidth = 5;
             this.splitContainerFeeds.TabIndex = 0;
             // 
             // toolStripMain
@@ -96,7 +98,7 @@ namespace RZZReader
             this.toolStripBtnAdd});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(142, 31);
+            this.toolStripMain.Size = new System.Drawing.Size(189, 31);
             this.toolStripMain.TabIndex = 2;
             this.toolStripMain.Text = "toolStrip1";
             // 
@@ -108,7 +110,7 @@ namespace RZZReader
             this.toolStripBtnAdd.Name = "toolStripBtnAdd";
             this.toolStripBtnAdd.Padding = new System.Windows.Forms.Padding(2);
             this.toolStripBtnAdd.Size = new System.Drawing.Size(28, 28);
-            this.toolStripBtnAdd.Text = "add your RSS source";
+            this.toolStripBtnAdd.Text = "Add your RSS source";
             this.toolStripBtnAdd.Click += new System.EventHandler(this.toolStripButtonAdd_Click);
             // 
             // treeViewRzz
@@ -117,9 +119,10 @@ namespace RZZReader
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.treeViewRzz.ContextMenuStrip = this.contextMenuStripTree;
-            this.treeViewRzz.Location = new System.Drawing.Point(0, 30);
+            this.treeViewRzz.Location = new System.Drawing.Point(0, 38);
+            this.treeViewRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.treeViewRzz.Name = "treeViewRzz";
-            this.treeViewRzz.Size = new System.Drawing.Size(141, 329);
+            this.treeViewRzz.Size = new System.Drawing.Size(187, 410);
             this.treeViewRzz.TabIndex = 1;
             this.treeViewRzz.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewRzz_AfterSelect);
             this.treeViewRzz.Click += new System.EventHandler(this.treeViewRzz_Click);
@@ -165,6 +168,7 @@ namespace RZZReader
             // 
             this.splitContainerFeed.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerFeed.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerFeed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainerFeed.Name = "splitContainerFeed";
             // 
             // splitContainerFeed.Panel1
@@ -175,8 +179,9 @@ namespace RZZReader
             // 
             this.splitContainerFeed.Panel2.Controls.Add(this.csWebBrowser);
             this.splitContainerFeed.Panel2.Controls.Add(this.toolStripWeb);
-            this.splitContainerFeed.Size = new System.Drawing.Size(494, 359);
-            this.splitContainerFeed.SplitterDistance = 131;
+            this.splitContainerFeed.Size = new System.Drawing.Size(659, 449);
+            this.splitContainerFeed.SplitterDistance = 174;
+            this.splitContainerFeed.SplitterWidth = 5;
             this.splitContainerFeed.TabIndex = 1;
             // 
             // listViewRzz
@@ -186,8 +191,9 @@ namespace RZZReader
             this.listViewRzz.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewRzz.HideSelection = false;
             this.listViewRzz.Location = new System.Drawing.Point(0, 0);
+            this.listViewRzz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listViewRzz.Name = "listViewRzz";
-            this.listViewRzz.Size = new System.Drawing.Size(131, 359);
+            this.listViewRzz.Size = new System.Drawing.Size(174, 449);
             this.listViewRzz.TabIndex = 0;
             this.listViewRzz.UseCompatibleStateImageBehavior = false;
             this.listViewRzz.Click += new System.EventHandler(this.listViewRzz_Click);
@@ -202,8 +208,9 @@ namespace RZZReader
             this.csWebBrowser.ActivateBrowserOnCreation = false;
             this.csWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
             this.csWebBrowser.Location = new System.Drawing.Point(0, 29);
+            this.csWebBrowser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.csWebBrowser.Name = "csWebBrowser";
-            this.csWebBrowser.Size = new System.Drawing.Size(359, 330);
+            this.csWebBrowser.Size = new System.Drawing.Size(480, 420);
             this.csWebBrowser.TabIndex = 2;
             // 
             // toolStripWeb
@@ -218,7 +225,7 @@ namespace RZZReader
             this.toolStripButtonExit});
             this.toolStripWeb.Location = new System.Drawing.Point(0, 0);
             this.toolStripWeb.Name = "toolStripWeb";
-            this.toolStripWeb.Size = new System.Drawing.Size(359, 29);
+            this.toolStripWeb.Size = new System.Drawing.Size(480, 29);
             this.toolStripWeb.TabIndex = 1;
             this.toolStripWeb.Text = "toolStrip1";
             // 
@@ -253,7 +260,7 @@ namespace RZZReader
             this.toolStripTextBoxImgs.Name = "toolStripTextBoxImgs";
             this.toolStripTextBoxImgs.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripTextBoxImgs.ReadOnly = true;
-            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(59, 29);
+            this.toolStripTextBoxImgs.Size = new System.Drawing.Size(70, 29);
             // 
             // toolStripSeparator1
             // 
@@ -269,7 +276,7 @@ namespace RZZReader
             this.toolStripButtonExit.Name = "toolStripButtonExit";
             this.toolStripButtonExit.Padding = new System.Windows.Forms.Padding(1);
             this.toolStripButtonExit.Size = new System.Drawing.Size(26, 26);
-            this.toolStripButtonExit.Text = "toolStripButton1";
+            this.toolStripButtonExit.Text = "Quit RZZReader";
             this.toolStripButtonExit.Click += new System.EventHandler(this.toolStripButtonExit_Click);
             // 
             // notifyIcon
@@ -311,13 +318,14 @@ namespace RZZReader
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(640, 359);
+            this.ClientSize = new System.Drawing.Size(853, 449);
             this.Controls.Add(this.splitContainerFeeds);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MinimizeBox = false;
             this.Name = "FormMain";
             this.Text = "RZZReader";
