@@ -18,6 +18,7 @@ using System.Web;
 using CefSharp;
 using CefSharp.WinForms;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace RZZReader
 {
@@ -38,6 +39,16 @@ namespace RZZReader
             mainTitle = this.Text;
             cfgFile.ExeConfigFilename = String.Format("{0}\\{1}",
                 System.Windows.Forms.Application.StartupPath, cfgFN);
+
+            /**
+             * text FileEncryption
+             */
+            string tp = System.Windows.Forms.Application.StartupPath;
+            string tf = String.Format("{0}\\{1}", tp, cfgFN);
+            string tfe = String.Format("{0}\\{1}.encrypted", tp, cfgFN);
+            string tfd = String.Format("{0}\\{1}.decrypted", tp, cfgFN);
+            FileEncryption.EncryptFile(tf, tfe);
+            FileEncryption.DecryptFile(tfe, tfd);
 
             CefSettings settings = new CefSettings();
             settings.Locale = "zh-CN";
@@ -753,6 +764,44 @@ namespace RZZReader
             newBrowser = new ChromiumWebBrowser();
             newBrowser.Load(targetUrl);
             return false;
+        }
+    }
+
+    public class FileEncryption
+    {
+        private static readonly byte[] Key = Encoding.UTF8.GetBytes("__your own key__");/* your encryption key, 16 bytes*/
+        private static readonly byte[] IV = Encoding.UTF8.GetBytes("__your own I.V__");/* your initialization vector, 16 bytes */
+
+        public static void EncryptFile(string inputFile, string outputFile)
+        {
+            using (var aes = new AesCryptoServiceProvider())
+            {
+                aes.Key = Key;
+                aes.IV = IV;
+
+                using (var inputFileStream = new FileStream(inputFile, FileMode.Open))
+                using (var outputFileStream = new FileStream(outputFile, FileMode.Create))
+                using (var cryptoStream = new CryptoStream(outputFileStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                {
+                    inputFileStream.CopyTo(cryptoStream);
+                }
+            }
+        }
+
+        public static void DecryptFile(string inputFile, string outputFile)
+        {
+            using (var aes = new AesCryptoServiceProvider())
+            {
+                aes.Key = Key;
+                aes.IV = IV;
+
+                using (var inputFileStream = new FileStream(inputFile, FileMode.Open))
+                using (var outputFileStream = new FileStream(outputFile, FileMode.Create))
+                using (var cryptoStream = new CryptoStream(inputFileStream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                {
+                    cryptoStream.CopyTo(outputFileStream);
+                }
+            }
         }
     }
 }
