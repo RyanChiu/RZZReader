@@ -25,7 +25,8 @@ namespace RZZReader
     public partial class FormMain : Form
     {
         private static string salt = "pleaseinputyourownsaltstringhere";
-        private static string cfgFN = "rzz.cfg";
+        private static string cfgFN = ".rzz.conf";
+        private static string cfgDataPath = string.Empty;
         private static string mainTitle = string.Empty;
         private static ExeConfigurationFileMap cfgFile = new ExeConfigurationFileMap();
         private FormLoading formLoading = null;
@@ -39,16 +40,7 @@ namespace RZZReader
             mainTitle = this.Text;
             cfgFile.ExeConfigFilename = String.Format("{0}\\{1}",
                 System.Windows.Forms.Application.StartupPath, cfgFN);
-
-            /**
-             * text FileEncryption
-             */
-            string tp = System.Windows.Forms.Application.StartupPath;
-            string tf = String.Format("{0}\\{1}", tp, cfgFN);
-            string tfe = String.Format("{0}\\{1}.encrypted", tp, cfgFN);
-            string tfd = String.Format("{0}\\{1}.decrypted", tp, cfgFN);
-            FileEncryption.EncryptFile(tf, tfe);
-            FileEncryption.DecryptFile(tfe, tfd);
+            cfgDataPath = cfgFile.ExeConfigFilename + "ig";
 
             CefSettings settings = new CefSettings();
             settings.Locale = "zh-CN";
@@ -263,6 +255,10 @@ namespace RZZReader
         {
             try
             {
+                if (File.Exists(cfgDataPath))
+                {
+                    FileEncryption.DecryptFile(cfgDataPath, cfgFile.ExeConfigFilename);
+                }
                 Configuration config = ConfigurationManager.OpenMappedExeConfiguration(
                     cfgFile, ConfigurationUserLevel.None);
                 if (config != null)
@@ -277,6 +273,8 @@ namespace RZZReader
                         appSettings.Settings.Add(key, value);
                     }
                     config.Save();
+                    FileEncryption.EncryptFile(cfgFile.ExeConfigFilename, cfgDataPath);
+                    File.Delete(cfgFile.ExeConfigFilename);
                     return true;
                 }
                 return false;
@@ -292,8 +290,13 @@ namespace RZZReader
         {
             try
             {
+                if (File.Exists(cfgDataPath))
+                {
+                    FileEncryption.DecryptFile(cfgDataPath, cfgFile.ExeConfigFilename);
+                }
                 Configuration config = ConfigurationManager.OpenMappedExeConfiguration(
                     cfgFile, ConfigurationUserLevel.None);
+                File.Delete(cfgFile.ExeConfigFilename);
                 if (config != null)
                 {
                     AppSettingsSection appSettings = (AppSettingsSection)config.GetSection("appSettings");
