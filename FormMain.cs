@@ -70,9 +70,9 @@ namespace RZZReader
         }
 
         protected void listRSS(SyndicationFeed sf, string folder = "default", 
-            bool showTitles = true, TreeNode selectedNode = null)
+            bool showTitles = true, TreeNode selectedNode = null, String originalUrl = null)
         {
-            if (sf == null) return;
+            //if (sf == null) return;
 
             /*
             this.ShowInTaskbar = true;
@@ -106,14 +106,14 @@ namespace RZZReader
 
             if (selectedNode != null)
             {
-                selectedNode.Text = sf.Title.Text;
+                selectedNode.Text = (sf == null ? originalUrl : sf.Title.Text);
                 selectedNode.Tag = sf;
             } else
             {
                 /*
                 * insert rssURL and its name&content&everything into the treeview
                 */
-                TreeNode newNode = new TreeNode(sf.Title.Text);
+                TreeNode newNode = new TreeNode(sf == null ? originalUrl : sf.Title.Text);
                 newNode.Tag = sf;
                 folderNode.Nodes.Add(newNode);
             }
@@ -127,21 +127,24 @@ namespace RZZReader
             */
         }
 
-        protected void listTitles(SyndicationFeed sf)
+        protected void listTitles(SyndicationFeed sf, String originalUrl = null)
         {
             /*
              * insert contents including "title, link, date, summary and content" into listview
              */
             listViewRzz.Items.Clear();
-            listViewRzz.Columns[0].Text = sf.Title.Text;
+            listViewRzz.Columns[0].Text = (sf == null ? originalUrl : sf.Title.Text);
             //listViewRzz.Sorting = SortOrder.Ascending;
-            foreach (SyndicationItem it in sf.Items)
+            if (sf != null)
             {
-                ListViewItem item = new ListViewItem(it.Title.Text);
-                item.Tag = it;
-                listViewRzz.Items.Add(item);
+                foreach (SyndicationItem it in sf.Items)
+                {
+                    ListViewItem item = new ListViewItem(it.Title.Text);
+                    item.Tag = it;
+                    listViewRzz.Items.Add(item);
 
-                //Application.DoEvents();
+                    //Application.DoEvents();
+                }
             }
         }
 
@@ -487,8 +490,8 @@ namespace RZZReader
         private async void editSourceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode selectedNode = treeViewRzz.SelectedNode;
-            SyndicationFeed sf = (SyndicationFeed)treeViewRzz.SelectedNode.Tag;
-            string oldUrl = sf.BaseUri.OriginalString;
+            SyndicationFeed sf = (SyndicationFeed)selectedNode.Tag;
+            string oldUrl = (sf == null ? selectedNode.Text : sf.BaseUri.OriginalString);
             FormInput formIpt = new FormInput();
             formIpt.Text = "Edit the source";
             formIpt.StartPosition = FormStartPosition.CenterParent;
@@ -663,7 +666,8 @@ namespace RZZReader
                 SyndicationFeed sf = loadRSS(url);
                 rZZs.feeds.Add(sf);
                 rZZs.cur++;
-                rZZs.tag = (sf == null) ? (object)url : null;
+                //rZZs.tag = (sf == null) ? (object)url : null;
+                rZZs.tag = (object)url;
                 bw.ReportProgress(rZZs.cur, rZZs);
             }
         }
@@ -690,10 +694,12 @@ namespace RZZReader
             {
                 notifyIcon.Visible = true;
                 notifyIcon.ShowBalloonTip(0, "Error",
-                    String.Format("Something went wrong, maybe the source '{0}' is not available.", 
-                        (sf == null ? (string)rZZs.tag : sf.BaseUri.OriginalString)),
+                    String.Format("Something went wrong, maybe the source '{0}' is not available.",
+                        //(sf == null ? (string)rZZs.tag : sf.BaseUri.OriginalString)),
+                        (string)rZZs.tag),
                     ToolTipIcon.Error);
                 notifyIcon.Visible = false;
+                listRSS(sf, null, true, null, (string)rZZs.tag);
                 if (rZZs.cur == rZZs.urls.Length)
                 {
                     formLoading.Close();
