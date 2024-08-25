@@ -28,8 +28,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -156,6 +155,7 @@
     <None Include="Resources\lock.png" />
     <None Include="Resources\exit.png" />
     <None Include="Resources\feed.png" />
+    <None Include="Resources\subscribe.png" />
     <Content Include="rzz.ico" />
   </ItemGroup>
   <ItemGroup>
