@@ -552,9 +552,10 @@ namespace RZZReader
         private async void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             TreeNode selectedNode = treeViewRzz.SelectedNode;
-            SyndicationFeed sf = (SyndicationFeed)treeViewRzz.SelectedNode.Tag;
+            SyndicationFeed sf = (SyndicationFeed)selectedNode.Tag;
+            string oldUrl = (sf == null ? selectedNode.Text : sf.BaseUri.OriginalString);
             this.Text = mainTitle + "  (...Refreshing...)";
-            sf = await asyncLoadRSS(sf.BaseUri.OriginalString);
+            sf = await asyncLoadRSS(oldUrl);
             this.Text = mainTitle;
             notifyIcon.Visible = true;
             //list the RSS into the tree and list view, but not content browser
