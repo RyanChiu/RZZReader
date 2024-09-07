@@ -338,7 +338,7 @@ namespace RZZReader
                         notifyIcon.ShowBalloonTip(0, "Error",
                             "Something went wrong, maybe the source just entered is not available.",
                             ToolTipIcon.Error);
-                        notifyIcon.Visible = false;
+                        notifyIcon.Visible = true;
                         return;
                     }
                     /*
@@ -521,7 +521,7 @@ namespace RZZReader
                         notifyIcon.ShowBalloonTip(0, "Error",
                             "Something went wrong, maybe the source just entered is not available.",
                             ToolTipIcon.Error);
-                        notifyIcon.Visible = false;
+                        notifyIcon.Visible = true;
                         return;
                     }
                     //save it to the config file
@@ -568,10 +568,12 @@ namespace RZZReader
             }
             else
             {
-                notifyIcon.ShowBalloonTip(0, "Error",
-                    "Something went wrong, maybe the source is temply not available.",
-                    ToolTipIcon.Error);
-                notifyIcon.Visible = false;
+                notifyIcon.ShowBalloonTip(
+                    0, "Error",
+                    "Refreshing failed, maybe the source is temply not available.",
+                    ToolTipIcon.Error
+                );
+                notifyIcon.Visible = true;
                 return;
             }
         }
@@ -694,12 +696,16 @@ namespace RZZReader
             else
             {
                 notifyIcon.Visible = true;
-                notifyIcon.ShowBalloonTip(0, "Error",
-                    String.Format("Something went wrong, maybe the source '{0}' is not available.",
+                notifyIcon.ShowBalloonTip(
+                    0, "Error",
+                    String.Format(
+                        "Something's wrong, maybe the source '{0}' is not available.",
                         //(sf == null ? (string)rZZs.tag : sf.BaseUri.OriginalString)),
-                        (string)rZZs.tag),
-                    ToolTipIcon.Error);
-                notifyIcon.Visible = false;
+                        (string)rZZs.tag
+                    ),
+                    ToolTipIcon.Error
+                );
+                notifyIcon.Visible = true;
                 listRSS(sf, null, true, null, (string)rZZs.tag);
                 if (rZZs.cur == rZZs.urls.Length)
                 {
